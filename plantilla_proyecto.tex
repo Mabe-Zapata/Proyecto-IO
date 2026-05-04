@@ -1,0 +1,335 @@
+\documentclass{article}
+
+% ── Idioma ─────────────────────────────────────────────────────────────────
+\usepackage[spanish]{babel}
+
+% ── Márgenes ───────────────────────────────────────────────────────────────
+\usepackage[letterpaper,top=3cm,bottom=2.5cm,left=3cm,right=3cm,
+            marginparwidth=1.75cm]{geometry}
+
+% ── Paquetes ───────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{xcolor}
+
+% ── Listings (código R con colores) ────────────────────────────────────────
+\usepackage{listings}
+
+\definecolor{codegreen}{rgb}{0.13,0.55,0.13}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.0,0.0,0.85}
+\definecolor{codebg}{rgb}{0.97,0.97,0.97}
+
+\lstdefinelanguage{R}{
+  keywords={if, else, repeat, while, function, for, in, next, break,
+            TRUE, FALSE, NULL, Inf, NaN, NA, library, require, return,
+            c, matrix, data.frame, list, nrow, ncol, byrow, rep},
+  keywordstyle=\color{codeblue}\bfseries,
+  comment=[l]{\#},
+  commentstyle=\color{codegreen},
+  stringstyle=\color{orange},
+  morestring=[b]",
+  morestring=[b]',
+  sensitive=true
+}
+
+\lstset{
+  language=R,
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  numbersep=8pt,
+  stepnumber=1,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{codegray},
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=4
+}
+
+% ── Encabezado institucional (portada + páginas internas) ──────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{70pt}
+
+\fancyhead[C]{%
+    \begin{minipage}[c]{2.0cm}
+        \centering
+        \includegraphics[width=2.0cm]{imagenes/uta.png}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{9cm}
+        \centering
+        \small{\textbf{UNIVERSIDAD TÉCNICA DE AMBATO}} \\[0.1cm]
+        \scriptsize{Facultad de Ingeniería en Sistemas, Electrónica e Industrial} \\[0.05cm]
+        \scriptsize{Carrera de Software} \\[0.1cm]
+        \scriptsize\textbf{Investigación de Operaciones}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{2.0cm}
+        \centering
+        \includegraphics[width=2.0cm]{imagenes/fisei.png}
+    \end{minipage}%
+}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ───────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ══════════════════════════════════════════════════════════════════════════
+%  PORTADA  (mismo encabezado fancy que las páginas internas)
+% ══════════════════════════════════════════════════════════════════════════
+\thispagestyle{fancy}
+
+\begin{center}
+
+    \vspace{3cm}
+    \rule{\linewidth}{1pt}
+    \vspace{0.4cm}
+
+    {\Large\textbf{Optimización de Distribución y Planificación
+    		Temporal en Planta Embotelladora de Agua
+    		Purificada
+    }}
+
+    \vspace{0.4cm}
+    \rule{\linewidth}{1pt}
+
+    \vspace{3cm}
+    {\large\textbf{Proyecto Académico}} \\[0.3cm]
+    {\normalsize Segundo Parcial}
+
+    \vspace{1.5cm}
+    \begin{tabular}{rl}
+        \textbf{Estudiantes:} & Erick Guerron  \\
+                              & Mauricio Guevara  \\
+                              & Erick Lopez 3 \\
+                              & Maria Zapata \\[0.4cm]
+        \textbf{Docente:}     & Mat. Inti Becerra, Mg. \\[0.2cm]
+        \textbf{Fecha:}       & Agregar Fecha \\[0.2cm]
+        \textbf{Período:}     & Enero 2026 -- Julio 2026 \\[0.2cm]
+        \textbf{Lugar:}       & Ambato -- Ecuador \\
+    \end{tabular}
+
+\end{center}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════
+%  ÍNDICE
+% ══════════════════════════════════════════════════════════════════════════
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════
+%  SECCIÓN 1
+% ══════════════════════════════════════════════════════════════════════════
+\section{Información General del Proyecto}
+
+\subsection{Datos Básicos}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+    \hline
+    \textbf{Asignatura}              & Investigación de Operaciones       \\ \hline
+    \textbf{Plazo de entrega}        & 4 semanas                          \\ \hline
+    \textbf{Formato de entrega}      & Informe técnico + Código R         \\ \hline
+    \textbf{Herramienta obligatoria} & R (lpSolve, igraph, ggplot2)       \\ \hline
+    \textbf{Tipo de trabajo}         & Grupal                             \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Objetivos del Proyecto}
+
+Al completar este proyecto, el estudiante será capaz de:
+
+\begin{enumerate}
+    \item Objetivo específico 1.
+    \item Objetivo específico 2.
+    \item Objetivo específico 3.
+\end{enumerate}
+
+\subsection{Contexto del Problema}
+
+Descripción del contexto y problema que motiva el proyecto.
+
+% ══════════════════════════════════════════════════════════════════════════
+%  SECCIÓN 2
+% ══════════════════════════════════════════════════════════════════════════
+\section{Parte 1: Título de la Parte}
+
+\subsection{Descripción del Problema}
+
+Descripción del problema a resolver en esta parte.
+
+\subsection{Datos Proporcionados}
+
+\subsubsection{Subtítulo de datos}
+
+Insertar tabla o datos aquí.
+
+\subsection{Tareas Específicas}
+
+\subsubsection{Tarea 1}
+
+Descripción de la tarea 1.
+
+\subsubsection{Implementación en R}
+
+Cree un script que:
+
+\begin{enumerate}
+    \item Cargue el paquete \texttt{lpSolve}
+    \item Defina la matriz de costos
+    \item Defina los vectores de capacidad y demanda
+    \item Ejecute \texttt{lp.transport()} con los parámetros correctos
+    \item Almacene el resultado en una variable
+\end{enumerate}
+
+\textbf{Estructura base:}
+
+\begin{lstlisting}[caption={Estructura para el modelo de transporte}]
+    library(lpSolve)
+
+    # Matriz de costos (3 filas, 4 columnas)
+    costos <- matrix(c(
+    8,  6, 10, 9,
+    9, 12, 13, 7,
+    14,  9, 16, 5
+    ), nrow = 3, byrow = TRUE)
+
+    # Capacidades (oferta)
+    capacidad <- c(50, 60, 40)
+
+    # Demandas
+    demanda <- c(30, 45, 35, 40)
+
+    # Resolver modelo de transporte
+    transporte <- lp.transport(
+    cost.mat  = costos,
+    direction = "min",
+    row.signs = rep("<=", 3),
+    row.rhs   = capacidad,
+    col.signs = rep(">=", 4),
+    col.rhs   = demanda
+    )
+\end{lstlisting}
+
+\subsubsection{Extracción de Resultados}
+
+Extraiga y reporte:
+
+\begin{itemize}
+    \item Resultado 1.
+    \item Resultado 2.
+    \item Resultado 3.
+\end{itemize}
+
+% ══════════════════════════════════════════════════════════════════════════
+%  SECCIÓN 3
+% ══════════════════════════════════════════════════════════════════════════
+\section{Parte 2: Título de la Parte}
+
+\subsection{Descripción del Problema}
+
+Descripción del problema a resolver en esta parte.
+
+\subsection{Datos Proporcionados}
+
+Insertar datos aquí.
+
+\subsection{Tareas Específicas}
+
+\subsubsection{Tarea 1}
+
+Descripción de la tarea 1.
+
+\subsubsection{Tarea 2}
+
+Descripción de la tarea 2.
+
+% ══════════════════════════════════════════════════════════════════════════
+%  SECCIÓN 4
+% ══════════════════════════════════════════════════════════════════════════
+\section{Parte 3: Entrega Final}
+
+\subsection{Estructura del Informe}
+
+\subsubsection{Portada}
+
+\begin{itemize}
+    \item Título del proyecto
+    \item Nombre de los estudiantes
+    \item Asignatura y profesor
+    \item Fecha de entrega
+\end{itemize}
+
+\subsubsection{Resumen (máx. 1 página)}
+
+\begin{itemize}
+    \item Problema planteado
+    \item Métodos utilizados
+    \item Principales resultados numéricos
+    \item Conclusión principal
+\end{itemize}
+
+\subsubsection{Conclusiones y Recomendaciones}
+
+\begin{itemize}
+    \item Resumen de hallazgos
+    \item Recomendaciones operativas
+    \item Limitaciones del estudio
+\end{itemize}
+
+\subsubsection{Anexos}
+
+\begin{itemize}
+    \item Código completo
+    \item Salidas de consola
+    \item Material complementario
+\end{itemize}
+
+\subsection{Criterios de Evaluación}
+
+\begin{center}
+\begin{tabular}{|l|c|}
+    \hline
+    \textbf{Criterio}          & \textbf{Ponderación} \\ \hline
+    Criterio 1                 & 10\%                 \\ \hline
+    Criterio 2                 & 10\%                 \\ \hline
+    Criterio 3                 & 10\%                 \\ \hline
+    Presentación primera parte & 20\%                 \\ \hline
+    Criterio 4                 & 10\%                 \\ \hline
+    Criterio 5                 &  5\%                 \\ \hline
+    Criterio 6                 &  5\%                 \\ \hline
+    Calidad del informe        & 10\%                 \\ \hline
+    Presentación Final         & 20\%                 \\ \hline
+    \textbf{Total}             & \textbf{100\%}       \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Formato de Entrega}
+
+Archivos a entregar:
+
+\begin{enumerate}
+    \item \texttt{informe\_proyecto.pdf} -- Informe completo.
+    \item \texttt{codigo\_parte1.R} -- Script R parte 1.
+    \item \texttt{codigo\_parte2.R} -- Script R parte 2.
+\end{enumerate}
+
+\textbf{Plazo:} 4 semanas desde la fecha de asignación.
+
+\end{document}

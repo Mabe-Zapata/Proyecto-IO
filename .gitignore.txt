@@ -1,0 +1,46 @@
+## Archivos auxiliares del núcleo de LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.pdfsync
+
+## Archivos de bibliografía (BibTeX / Biber)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+## Índices y glosarios
+*.glo
+*.idx
+*.ilg
+*.ind
+*.ist
+*.glg
+*.gls
+
+## Archivos de listas y figuras (TikZ / Listados)
+*.lof
+*.lot
+*.lol
+*.nav
+*.snm
+*.vrb
+*.maf
+*.mtc
+*.mtc0
+
+## Archivos temporales de editores (VS Code, TeXstudio, etc.)
+.vscode/
+*.swp
+*.bak
+*.sav
+*.tmp
+
+## Archivos de salida (Opcional)
+# Descomenta la siguiente línea si NO quieres subir el PDF generado
+# *.pdf
