@@ -4,8 +4,8 @@
 \usepackage[spanish]{babel}
 
 % ── Márgenes ───────────────────────────────────────────────────────────────
-\usepackage[letterpaper,top=3cm,bottom=2.5cm,left=3cm,right=3cm,
-            marginparwidth=1.75cm]{geometry}
+\usepackage[letterpaper,top=2cm,bottom=4cm,left=2cm,right=2cm,
+marginparwidth=1.75cm]{geometry}
 
 % ── Paquetes ───────────────────────────────────────────────────────────────
 \usepackage{amsmath}
@@ -16,6 +16,53 @@
 \usepackage{array}
 \usepackage{parskip}
 \usepackage{xcolor}
+\usepackage{tabularray}
+\usepackage{xcolor}
+
+ \usepackage{colortbl}
+
+ \usepackage{makecell}
+ \usepackage{multirow}
+ \usepackage{amsmath}
+ \usepackage{amssymb}
+ \usepackage{xfrac}     % para fracciones opcionales
+
+% ---- Macros globales para tablas de transporte ----
+\definecolor{celBasica}{gray}{0.78}
+
+% Celda BÁSICA: costo pequeño arriba, asignación en negrita abajo (fondo gris)
+\newcommand{\BC}[2]{%
+	\cellcolor{celBasica}%
+	\makecell{\scriptsize\textit{#1}\\[4pt]\textbf{\large #2}}%
+}
+
+% Celda NO BÁSICA: solo costo pequeño arriba, espacio abajo
+\newcommand{\NC}[1]{%
+	\makecell{\scriptsize\textit{#1}\\[4pt]\phantom{000}}%
+}
+
+% Celda NO BÁSICA con costo reducido visible (para tablas MODI)
+\newcommand{\RD}[2]{%
+	\makecell{\scriptsize\textit{#1}\\[4pt]\small$#2$}%
+}
+
+% Celda BÁSICA en el ciclo (con signo + o -)
+\newcommand{\BCSIGN}[3]{%  {costo}{asignación}{signo}
+	\cellcolor{celBasica}%
+	\makecell{\scriptsize\textit{#1}\\[2pt]\textbf{\large #2}~\textit{#3}}%
+}
+
+% Celda vacía con costo (sin asignación)
+\newcommand{\EC}[1]{%
+	\makecell{\scriptsize\textit{#1}\\[4pt]~}%
+}
+
+\renewcommand{\arraystretch}{2.4}
+
+% Definición de estilo para las celdas de transporte
+\NewChildSelector{transport}{
+	\every{c,r} = {m, c, wd=1.2cm, ht=1cm}
+}
 
 % ── Listings (código R con colores) ────────────────────────────────────────
 \usepackage{listings}
@@ -26,310 +73,586 @@
 \definecolor{codebg}{rgb}{0.97,0.97,0.97}
 
 \lstdefinelanguage{R}{
-  keywords={if, else, repeat, while, function, for, in, next, break,
-            TRUE, FALSE, NULL, Inf, NaN, NA, library, require, return,
-            c, matrix, data.frame, list, nrow, ncol, byrow, rep},
-  keywordstyle=\color{codeblue}\bfseries,
-  comment=[l]{\#},
-  commentstyle=\color{codegreen},
-  stringstyle=\color{orange},
-  morestring=[b]",
-  morestring=[b]',
-  sensitive=true
+	keywords={if, else, repeat, while, function, for, in, next, break,
+		TRUE, FALSE, NULL, Inf, NaN, NA, library, require, return,
+		c, matrix, data.frame, list, nrow, ncol, byrow, rep},
+	keywordstyle=\color{codeblue}\bfseries,
+	comment=[l]{\#},
+	commentstyle=\color{codegreen},
+	stringstyle=\color{orange},
+	morestring=[b]",
+	morestring=[b]',
+	sensitive=true
 }
 
 \lstset{
-  language=R,
-  backgroundcolor=\color{codebg},
-  basicstyle=\ttfamily\small,
-  numbers=left,
-  numberstyle=\tiny\color{codegray},
-  numbersep=8pt,
-  stepnumber=1,
-  frame=single,
-  framerule=0.4pt,
-  rulecolor=\color{codegray},
-  breaklines=true,
-  captionpos=b,
-  keepspaces=true,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  tabsize=4
+	language=R,
+	backgroundcolor=\color{codebg},
+	basicstyle=\ttfamily\small,
+	numbers=left,
+	numberstyle=\tiny\color{codegray},
+	numbersep=8pt,
+	stepnumber=1,
+	frame=single,
+	framerule=0.4pt,
+	rulecolor=\color{codegray},
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4
 }
 
-% ── Encabezado institucional (portada + páginas internas) ──────────────────
+% ── Encabezado institucional ───────────────────────────────────────────────
 \pagestyle{fancy}
 \fancyhf{}
 \setlength{\headheight}{70pt}
 
 \fancyhead[C]{%
-    \begin{minipage}[c]{2.0cm}
-        \centering
-        \includegraphics[width=2.0cm]{imagenes/uta.png}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[c]{9cm}
-        \centering
-        \small{\textbf{UNIVERSIDAD TÉCNICA DE AMBATO}} \\[0.1cm]
-        \scriptsize{Facultad de Ingeniería en Sistemas, Electrónica e Industrial} \\[0.05cm]
-        \scriptsize{Carrera de Software} \\[0.1cm]
-        \scriptsize\textbf{Investigación de Operaciones}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[c]{2.0cm}
-        \centering
-        \includegraphics[width=2.0cm]{imagenes/fisei.png}
-    \end{minipage}%
+	\begin{minipage}[c]{2.0cm}
+		\centering
+		\includegraphics[width=2.0cm]{imagenes/uta.png}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{9cm}
+		\centering
+		\small{\textbf{UNIVERSIDAD TÉCNICA DE AMBATO}} \\[0.1cm]
+		\scriptsize{Facultad de Ingeniería en Sistemas, Electrónica e Industrial} \\[0.05cm]
+		\scriptsize{Carrera de Software} \\[0.1cm]
+		\scriptsize\textbf{Ciclo Académico: Enero 2026 -- Julio 2026}   % <── CAMBIADO
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{2.0cm}
+		\centering
+		\includegraphics[width=2.0cm]{imagenes/fisei.png}
+	\end{minipage}%
 }
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
 % ───────────────────────────────────────────────────────────────────────────
 \begin{document}
-
-% ══════════════════════════════════════════════════════════════════════════
-%  PORTADA  (mismo encabezado fancy que las páginas internas)
-% ══════════════════════════════════════════════════════════════════════════
-\thispagestyle{fancy}
-
-\begin{center}
-
-    \vspace{3cm}
-    \rule{\linewidth}{1pt}
-    \vspace{0.4cm}
-
-    {\Large\textbf{Optimización de Distribución y Planificación
-    		Temporal en Planta Embotelladora de Agua
-    		Purificada
-    }}
-
-    \vspace{0.4cm}
-    \rule{\linewidth}{1pt}
-
-    \vspace{3cm}
-    {\large\textbf{Proyecto Académico}} \\[0.3cm]
-    {\normalsize Segundo Parcial}
-
-    \vspace{1.5cm}
-    \begin{tabular}{rl}
-        \textbf{Estudiantes:} & Erick Guerron  \\
-                              & Mauricio Guevara  \\
-                              & Erick Lopez 3 \\
-                              & Maria Zapata \\[0.4cm]
-        \textbf{Docente:}     & Mat. Inti Becerra, Mg. \\[0.2cm]
-        \textbf{Fecha:}       & Agregar Fecha \\[0.2cm]
-        \textbf{Período:}     & Enero 2026 -- Julio 2026 \\[0.2cm]
-        \textbf{Lugar:}       & Ambato -- Ecuador \\
-    \end{tabular}
-
-\end{center}
-
-\newpage
-
-% ══════════════════════════════════════════════════════════════════════════
-%  ÍNDICE
-% ══════════════════════════════════════════════════════════════════════════
-\tableofcontents
-\newpage
-
-% ══════════════════════════════════════════════════════════════════════════
-%  SECCIÓN 1
-% ══════════════════════════════════════════════════════════════════════════
-\section{Información General del Proyecto}
-
-\subsection{Datos Básicos}
-
-\begin{center}
-\begin{tabular}{|l|l|}
-    \hline
-    \textbf{Asignatura}              & Investigación de Operaciones       \\ \hline
-    \textbf{Plazo de entrega}        & 4 semanas                          \\ \hline
-    \textbf{Formato de entrega}      & Informe técnico + Código R         \\ \hline
-    \textbf{Herramienta obligatoria} & R (lpSolve, igraph, ggplot2)       \\ \hline
-    \textbf{Tipo de trabajo}         & Grupal                             \\ \hline
-\end{tabular}
-\end{center}
-
-\subsection{Objetivos del Proyecto}
-
-Al completar este proyecto, el estudiante será capaz de:
-
-\begin{enumerate}
-    \item Objetivo específico 1.
-    \item Objetivo específico 2.
-    \item Objetivo específico 3.
-\end{enumerate}
-
-\subsection{Contexto del Problema}
-
-Descripción del contexto y problema que motiva el proyecto.
-
-% ══════════════════════════════════════════════════════════════════════════
-%  SECCIÓN 2
-% ══════════════════════════════════════════════════════════════════════════
-\section{Parte 1: Título de la Parte}
-
-\subsection{Descripción del Problema}
-
-Descripción del problema a resolver en esta parte.
-
-\subsection{Datos Proporcionados}
-
-\subsubsection{Subtítulo de datos}
-
-Insertar tabla o datos aquí.
-
-\subsection{Tareas Específicas}
-
-\subsubsection{Tarea 1}
-
-Descripción de la tarea 1.
-
-\subsubsection{Implementación en R}
-
-Cree un script que:
-
-\begin{enumerate}
-    \item Cargue el paquete \texttt{lpSolve}
-    \item Defina la matriz de costos
-    \item Defina los vectores de capacidad y demanda
-    \item Ejecute \texttt{lp.transport()} con los parámetros correctos
-    \item Almacene el resultado en una variable
-\end{enumerate}
-
-\textbf{Estructura base:}
-
-\begin{lstlisting}[caption={Estructura para el modelo de transporte}]
-    library(lpSolve)
-
-    # Matriz de costos (3 filas, 4 columnas)
-    costos <- matrix(c(
-    8,  6, 10, 9,
-    9, 12, 13, 7,
-    14,  9, 16, 5
-    ), nrow = 3, byrow = TRUE)
-
-    # Capacidades (oferta)
-    capacidad <- c(50, 60, 40)
-
-    # Demandas
-    demanda <- c(30, 45, 35, 40)
-
-    # Resolver modelo de transporte
-    transporte <- lp.transport(
-    cost.mat  = costos,
-    direction = "min",
-    row.signs = rep("<=", 3),
-    row.rhs   = capacidad,
-    col.signs = rep(">=", 4),
-    col.rhs   = demanda
-    )
-\end{lstlisting}
-
-\subsubsection{Extracción de Resultados}
-
-Extraiga y reporte:
-
-\begin{itemize}
-    \item Resultado 1.
-    \item Resultado 2.
-    \item Resultado 3.
-\end{itemize}
-
-% ══════════════════════════════════════════════════════════════════════════
-%  SECCIÓN 3
-% ══════════════════════════════════════════════════════════════════════════
-\section{Parte 2: Título de la Parte}
-
-\subsection{Descripción del Problema}
-
-Descripción del problema a resolver en esta parte.
-
-\subsection{Datos Proporcionados}
-
-Insertar datos aquí.
-
-\subsection{Tareas Específicas}
-
-\subsubsection{Tarea 1}
-
-Descripción de la tarea 1.
-
-\subsubsection{Tarea 2}
-
-Descripción de la tarea 2.
-
-% ══════════════════════════════════════════════════════════════════════════
-%  SECCIÓN 4
-% ══════════════════════════════════════════════════════════════════════════
-\section{Parte 3: Entrega Final}
-
-\subsection{Estructura del Informe}
-
-\subsubsection{Portada}
-
-\begin{itemize}
-    \item Título del proyecto
-    \item Nombre de los estudiantes
-    \item Asignatura y profesor
-    \item Fecha de entrega
-\end{itemize}
-
-\subsubsection{Resumen (máx. 1 página)}
-
-\begin{itemize}
-    \item Problema planteado
-    \item Métodos utilizados
-    \item Principales resultados numéricos
-    \item Conclusión principal
-\end{itemize}
-
-\subsubsection{Conclusiones y Recomendaciones}
-
-\begin{itemize}
-    \item Resumen de hallazgos
-    \item Recomendaciones operativas
-    \item Limitaciones del estudio
-\end{itemize}
-
-\subsubsection{Anexos}
-
-\begin{itemize}
-    \item Código completo
-    \item Salidas de consola
-    \item Material complementario
-\end{itemize}
-
-\subsection{Criterios de Evaluación}
-
-\begin{center}
-\begin{tabular}{|l|c|}
-    \hline
-    \textbf{Criterio}          & \textbf{Ponderación} \\ \hline
-    Criterio 1                 & 10\%                 \\ \hline
-    Criterio 2                 & 10\%                 \\ \hline
-    Criterio 3                 & 10\%                 \\ \hline
-    Presentación primera parte & 20\%                 \\ \hline
-    Criterio 4                 & 10\%                 \\ \hline
-    Criterio 5                 &  5\%                 \\ \hline
-    Criterio 6                 &  5\%                 \\ \hline
-    Calidad del informe        & 10\%                 \\ \hline
-    Presentación Final         & 20\%                 \\ \hline
-    \textbf{Total}             & \textbf{100\%}       \\ \hline
-\end{tabular}
-\end{center}
-
-\subsection{Formato de Entrega}
-
-Archivos a entregar:
-
-\begin{enumerate}
-    \item \texttt{informe\_proyecto.pdf} -- Informe completo.
-    \item \texttt{codigo\_parte1.R} -- Script R parte 1.
-    \item \texttt{codigo\_parte2.R} -- Script R parte 2.
-\end{enumerate}
-
-\textbf{Plazo:} 4 semanas desde la fecha de asignación.
-
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  PORTADA
+	% ══════════════════════════════════════════════════════════════════════════
+	\thispagestyle{fancy}
+	
+	\begin{center}
+		
+		\vspace{3cm}
+		\rule{\linewidth}{1pt}
+		\vspace{0.4cm}
+		
+		{\Large\textbf{Optimización de Distribución y Planificación
+				Temporal en Planta Embotelladora de Agua
+				Purificada
+		}}
+		
+		\vspace{0.4cm}
+		\rule{\linewidth}{1pt}
+		
+		\vspace{3cm}
+		{\large\textbf{Proyecto Académico}} \\[0.3cm]
+		{\normalsize Segundo Parcial}
+		
+		\vspace{1.5cm}
+		\begin{tabular}{rl}
+			\textbf{Estudiantes:} & Erick Guerron  \\
+			& Mauricio Guevara  \\
+			& Erick Lopez 3 \\
+			& Maria Zapata \\[0.4cm]
+			\textbf{Docente:}     & Mat. Inti Becerra, Mg. \\[0.2cm]
+			\textbf{Fecha:}       & Agregar Fecha \\[0.2cm]
+			\textbf{Período:}     & Enero 2026 -- Julio 2026 \\[0.2cm]
+			\textbf{Lugar:}       & Ambato -- Ecuador \\
+		\end{tabular}
+		
+	\end{center}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  ÍNDICE
+	% ══════════════════════════════════════════════════════════════════════════
+	\tableofcontents
+	\newpage
+	
+
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  SECCIÓN 1
+	% ══════════════════════════════════════════════════════════════════════════
+	\section{Modelo de Transporte}
+	
+	\subsection{Variables de decisión}
+	En función de lo descrito dentro del problema se tomó como principal variable de decisión X que describe los miles de litros enviados desde las plantas hacia los centros de distribución, dichas plantas son representadas mediante la variable i que es identificada mediante estándares como variable de iteración y de la misma forma se selecciono j para describir a los centros de distribución dentro de su análisis matricial. Por lo cual se tiene que sea:
+	\[
+	x_{ij} = \text{cantidad (en miles de litros) enviada desde la planta } i \text{ al CD } j
+	\]
+	Donde los iterables describen tanto a las plantas como a los centros de distribución como se denota en:
+	\[
+	i \in \{A, B, C\}, \quad j \in \{1,2,3,4\}
+	\]
+	
+	\subsection{Función objetivo}
+
+La función objetivo del modelo de transporte planteado tiene como propósito minimizar el costo total en que incurre el sistema logístico al trasladar agua potable que se encuentra medida en miles de litros desde las tres plantas de producción descritos como A, B y C hacia los cuatro centros de distribución nombrados como 1, 2, 3 y 4. Formalmente, dicha función se expresa como:
+	\[
+	\min Z =
+	8x_{A1} + 6x_{A2} + 10x_{A3} + 9x_{A4}
+	+ 9x_{B1} + 12x_{B2} + 13x_{B3} + 7x_{B4}
+	+ 14x_{C1} + 9x_{C2} + 16x_{C3} + 5x_{C4}
+	\]
+	
+	Cada término que compone esta sumatoria representa el producto entre dos elementos: el coeficiente de costo unitario, que refleja el gasto asociado al transporte de un millar de litros a lo largo de una ruta específica, y la variable de decisión correspondiente, que indica la cantidad descrita en miles de litros, que efectivamente se asignará a dicha ruta una vez resuelto el modelo.
+	Así, las variables de decisión xij indican el flujo de agua que se transporta desde la planta i hacia el centro de distribución j, donde i corresponde a la sumatoria en función de {A, B, C} y j responde a la sumatoria en función de  {1, 2, 3, 4}. Los coeficientes que acompañan a cada variable son los costos unitarios de transporte por ruta, los cuales se detallan a continuación según su origen:
+	
+	Desde la planta A, el costo de transportar hacia el centro 1 es de 8 unidades monetarias por millar de litros descritos como xA1; hacia el centro 2, de 6 correspondiente a xA2, siendo esta la ruta más económica para dicha planta; hacia el centro 3, de 10 xA3; y hacia el centro 4, de 9 xA4.
+	
+	Desde la planta B, el correspondiente costo hacia el centro 1 asciende a 9 unidades descrito como xB1; hacia el centro 2, a 12 notado como xB2; hacia el centro 3, a 13 con la notación xB3; mientras que la ruta hacia el centro 4 presenta el menor costo para esta planta, con 7 unidades xB4.
+	
+	Desde la planta C, se denota que las rutas resultan en general más costosas. El transporte hacia el centro 1 tiene un costo de 14 unidades notado en el modelo como xC1; hacia el centro 2, de 9 (xC2); hacia el centro 3, de 16 xC3), siendo este el coeficiente más elevado de todo el modelo; y hacia el centro 4, de 5 unidades (xC4), que representa el costo unitario más bajo del sistema en su totalidad.
+	
+	En consecuencia, el valor de Z queda determinado por la combinación de rutas activas que el modelo seleccione: a mayor volumen asignado a rutas con coeficientes altos, mayor será el costo total; inversamente, una asignación eficiente privilegiará las rutas de menor costo siempre que las restricciones de oferta y demanda lo permitan. El objetivo del modelo es precisamente encontrar aquella distribución de flujos xij que satisfaga la totalidad de la demanda de los centros y respete la capacidad de cada planta, logrando al mismo tiempo el valor mínimo posible de Z.
+	
+	
+	\subsection{Restricciones de oferta}
+	Dentro de las descripciones de la oferta se denota que cada planta no puede enviar mas de lo establecido dentro de su capacidad de forma en que se conoce que la limitante a la planta A corresponde a 50 mil litros, a su vez la planta nombrada como B debe limitarse al valor correspondiente a 60 mil litros y la planta C tiene una limitante descrita en 40 mil litros de agua, esta descripción permite plantear que los valores destinados para cada ruta debe sumar en total el limite correspondiente para cada planta.
+	
+	Es por ello que para la planta A se corresponde que el valor entregado al centro de distribución 1 agregado al valor de entrega del centro de distribución 2 junto con el valor correspondiente para centros de distribución de nombre 3 y 4 deben juntar en total como valor máximo 50 mil litros de agua, de la misma forma para cada una de las plantas procesadoras de agua
+	
+	\[
+	x_{A1} + x_{A2} + x_{A3} + x_{A4} \leq 50
+	\]
+	\[
+	x_{B1} + x_{B2} + x_{B3} + x_{B4} \leq 60
+	\]
+	\[
+	x_{C1} + x_{C2} + x_{C3} + x_{C4} \leq 40
+	\]
+	
+	\subsection{Restricciones de demanda}
+	
+	
+	Dentro de las descripciones de la demanda se denota que cada centro de distribución debe recibir exactamente la cantidad requerida para satisfacer las necesidades de su zona de cobertura, de forma en que se conoce que el requerimiento del centro de distribución 1 corresponde a 30 mil litros, a su vez el centro de distribución nombrado como 2 tiene un requerimiento correspondiente a 45 mil litros, el centro 3 presenta una demanda descrita en 35 mil litros de agua, y finalmente el centro de distribución 4 requiere un total de 40 mil litros. Esta descripción permite plantear que los volúmenes enviados desde cada una de las plantas hacia un mismo centro de distribución deben sumar exactamente la cantidad demandada por dicho centro, sin déficit ni excedente.
+	
+	Es por ello por lo que para el centro de distribución 1 se corresponde que el volumen recibido desde la planta A agregado al volumen proveniente de la planta B junto con el valor correspondiente enviado desde la planta C deben reunir en total exactamente 30 mil litros de agua. De la misma forma, para el centro de distribución 2 la suma de los flujos recibidos desde las plantas A, B y C debe alcanzar los 45 mil litros, siendo esta la demanda más elevada entre todos los centros del sistema.
+	
+	Para el centro de distribución 3, la sumatoria de los envíos provenientes de cada una de las tres plantas debe igualar los 35 mil litros requeridos. Finalmente, para el centro de distribución 4 el total acumulado de los volúmenes recibidos desde las plantas A, B y C debe corresponder exactamente a los 40 mil litros establecidos como su demanda. De esta manera, las cuatro restricciones garantizan colectivamente que la totalidad de la demanda del sistema, equivalente a 150 mil litros en su conjunto, quede completamente cubierta mediante la asignación óptima de los flujos de transporte.
+	
+	\[
+	x_{A1} + x_{B1} + x_{C1} = 30
+	\]
+	\[
+	x_{A2} + x_{B2} + x_{C2} = 45
+	\]
+	\[
+	x_{A3} + x_{B3} + x_{C3} = 35
+	\]
+	\[
+	x_{A4} + x_{B4} + x_{C4} = 40
+	\]
+	
+	\subsection{Restricción de no negatividad}
+	Adicionalmente a las restricciones de oferta y demanda previamente descritas, el modelo incorpora una condición fundamental que aplica de manera universal sobre la totalidad de las variables de decisión que lo conforman. Dicha condición establece que ninguna de las rutas de transporte que comunican las plantas de producción con los centros de distribución puede asumir un valor negativo, lo cual responde a una exigencia de coherencia física y lógica del problema, dado que no resulta posible transportar una cantidad negativa de agua entre dos puntos del sistema.
+	
+	En consecuencia, cada una de las doce variables de decisión xij, donde i representa la planta de origen perteneciente al conjunto {A, B, C} y j representa el centro de distribución destino perteneciente al conjunto {1, 2, 3, 4}, debe tomar un valor mayor o igual a cero.
+	
+	 Esto implica que variables como xA1, xA2, xA3, xA4, xB1, xB2, xB3, xB4, xC1, xC2, xC3 y xC4 pueden adoptar el valor de cero cuando el modelo determine que una ruta particular no debe ser utilizada dentro de la solución óptima, o bien asumir cualquier valor positivo que exprese el volumen en miles de litros efectivamente transportado a través de dicha ruta. Esta restricción, si bien es la más sencilla en su formulación, resulta indispensable para garantizar que la solución obtenida sea matemáticamente válida y operativamente interpretable dentro del contexto real del problema de distribución de agua potable.
+	
+	\[
+	x_{ij} \geq 0 \quad \forall i,j
+	\]
+	
+	\subsection{Comprobación de balanceo}
+	Como paso elemental dentro de la resolución del ejercicio se realiza la comprobación de balaceo, este paso aunque comúnmente saltado es clave para la resolución correcta de ejercicios ya que permite saber si el valor total de la oferta satisface a la demanda en su totalidad de forma en la que no existan excesos ni a nivel de oferta ni mucho menos de demanda de productos.
+	
+	Es por ello por lo que realizamos las correspondientes sumas parciales a nivel de oferta como de demanda y comparamos que los valores resultantes sean iguales para ambos puntos de análisis, por ello dentro del problema descrito en el flujo del agua se demuestra que los valores son correspondientes y que no se requiere de la creación de un punto de abastecimiento ficticio ni mucho menos de un correspondiente punto ficticio de distribución. 
+	
+	
+	Oferta total:
+	\[
+	50 + 60 + 40 = 150
+	\]
+	
+	Demanda total:
+	\[
+	30 + 45 + 35 + 40 = 150
+	\]
+	
+	Dado que:
+	\[
+	\text{Oferta total} = \text{Demanda total}
+	\]
+	
+	% =========================
+	% 5. MÉTODO COSTO MÍNIMO
+	% =========================
+	\section{Solución inicial (Método de Costo Mínimo)}
+	
+Con la finalidad de encontrar el valor mínimo mas optimo desde el punto inicial de las iteraciones, se decidió iniciar el cálculo mediante la resolución en costos mínimos, este proceso fue realizado con una asignación efectuada de forma creciente para los distintos valores posibles de costo unitario de transporte desde un punto de abasto o planta de producción hacia un punto de distribución, para una comprensión numérica del proceso ejecutado se enlistan los pasos y las plantas en las que se realizo el proceso en lo siguiente:
+
+	\begin{enumerate}
+		\item $C \to CD_4$: $\min(40,\,40)=40$
+		\item $A \to CD_2$: $\min(50,\,45)=45$
+		\item $A \to CD_1$: $\min(5,\,30)=5$
+		\item $B \to CD_1$: $\min(60,\,25)=25$
+		\item $B \to CD_3$: $\min(35,\,35)=35$
+	\end{enumerate}
+	
+
+	
+	
+	% =========================
+	% 6. CÁLCULO DE Z INICIAL
+	% =========================
+	\section{Costo inicial}
+	Posterior al cálculo determinante de los valores que serán asignados desde cada planta hacia cada punto de distribución, se calcula el costo inicial de la primera iteración tomando en cuenta la función inicial y la distribución resultante obtenida dentro del método de costo mínimo, es por ello que dicha función corresponde a la sumatoria de los valores de distribución.
+	\[
+	Z = 5(8) + 45(6) + 25(9) + 35(13) + 40(5)
+	= 40 + 270 + 225 + 455 + 200
+	= \boxed{1{,}190}
+	\]
+	
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{2.4}
+		\begin{tabular}{>{\bfseries}c | cccc | >{\bfseries}c}
+			\hline\hline
+			& \textbf{$CD_1$} & \textbf{$CD_2$} & \textbf{$CD_3$} & \textbf{$CD_4$} & \textbf{Oferta} \\
+			\hline
+			$A$   & \BC{8}{5}   & \BC{6}{45}  & \NC{10}     & \NC{}       & 50 \\
+			$B$   & \BC{9}{25}  & \NC{}        & \BC{13}{35} & \NC{}       & 60 \\
+			$C$   & \NC{}        & \NC{}        & \NC{}        & \BC{5}{40}  & 40 \\
+			\hline
+			\textbf{Demanda} & \textbf{30} & \textbf{45} & \textbf{35} & \textbf{40} & \textbf{150} \\
+			\hline\hline
+		\end{tabular}
+		\caption{Solución básica factible inicial (celdas sombreadas = variables básicas)}
+	\end{table}
+	% =========================
+	% 7. PRIMERA ITERACIÓN MODI
+	% =========================
+	\section{Método MODI — Primera iteración}
+	
+Dentro de la primera iteración a partir de la solución inicial obtenida mediante el método de costo mínimo en el paso anterior, se procede a aplicar el método MODI basado en los multiplicadores  para la obtención de los valores correspondientes a la celdas básicas tomando en cuenta la formula tratada en clase que relaciona los valores de las celdas y sus costos.
+	Fijando $u_A = 0$ y aplicando $u_i + v_j = c_{ij}$ para cada celda básica:
+	
+	\begin{align*}
+		u_A + v_1 &= 8  &&\Longrightarrow v_1 = 8  \\
+		u_A + v_2 &= 6  &&\Longrightarrow v_2 = 6  \\
+		u_B + v_1 &= 9  &&\Longrightarrow u_B = 1  \\
+		u_B + v_3 &= 13 &&\Longrightarrow v_3 = 12 \\
+		u_C + v_4 &= 5  &&\Longrightarrow u_C = 0,\quad v_4 = 5
+	\end{align*}
+	En esta primera iteración, se emplean los multiplicadores $u_i$ y $v_j$ para evaluar la optimización de la tabla de transporte. Al establecer $u_A = 0$ como valor de referencia, se calculan los demás índices mediante la relación $C_{ij} = u_i + v_j$ aplicada exclusivamente a las celdas básicas (aquellas con asignación). Este proceso permite determinar que $v_1=8$, $v_2=6$ y $v_3=12$ a partir de la fila A, mientras que los valores de $u_B=1$ y $u_C=0$ se derivan de las conexiones en las columnas restantes, logrando así una estructura analítica para medir la eficiencia de las rutas no utilizadas.Una vez establecidos los multiplicadores, se procede al cálculo de los costos marginales para las celdas no básicas mediante la fórmula $\Delta_{ij} = C_{ij} - (u_i + v_j)$. 
+	
+	El análisis destaca la celda $(A, 3)$, donde el costo marginal resulta en $\Delta_{A,3} = 10 - (0 + 12) = -2$; al ser este un valor negativo, se identifica una oportunidad de mejora en la función objetivo. En consecuencia, se determina que esta celda debe entrar a la base en el siguiente paso, activando un reajuste de las asignaciones actuales para reducir el costo total del sistema.
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{2.4}
+		\begin{tabular}{cc | cccc | >{\bfseries}c}
+			\hline\hline
+			&       & $v_1=8$ & $v_2=6$ & $v_3=12$ & $v_4=5$ & \textbf{Oferta} \\
+			\hline
+			$u_A=0$ & $A$ & \BC{8}{5}   & \BC{6}{45}  & \RD{10}{-2\;\star} & \NC{}      & 50 \\
+			$u_B=1$ & $B$ & \BC{9}{25}  & \NC{}        & \BC{13}{35}         & \NC{}      & 60 \\
+			$u_C=0$ & $C$ & \NC{}        & \NC{}        & \NC{}                & \BC{5}{40} & 40 \\
+			\hline
+			\multicolumn{2}{c|}{\textbf{Demanda}} & \textbf{30} & \textbf{45} & \textbf{35} & \textbf{40} & \textbf{150} \\
+			\hline\hline
+		\end{tabular}
+		\caption{Iteración 1 — $\Delta_{A,CD_3}=10-(0+12)=-2<0$ (entra a la base)}
+	\end{table}
+	
+	% =========================
+	% 8. CICLO Y THETA
+	% =========================
+	\section{Ciclo cerrado y cálculo de $\theta$}
+	
+	Tras identificar que la celda $(A, CD_3)$ posee un costo marginal negativo, se procede a la construcción de un ciclo cerrado para redistribuir las unidades y optimizar el costo total. Este camino se traza partiendo de la celda entrante y desplazándose horizontal y verticalmente solo a través de celdas básicas existentes, alternando signos positivos y negativos para mantener el equilibrio de la oferta y la demanda. En este caso, el ciclo vincula las posiciones $(A, CD_3)$, $(B, CD_3)$, $(B, CD_1)$ y $(A, CD_1)$, permitiendo un ajuste dinámico de las cantidades asignadas sin alterar las restricciones de los orígenes y destinos.
+	
+	Para determinar la magnitud del ajuste, se define el valor de $\theta$ mediante el mínimo valor de las unidades en las celdas con signo negativo dentro del ciclo, resultando en $\theta = \min(35, 5) = 5$. Al aplicar este valor, se actualizan las asignaciones: la celda entrante recibe 5 unidades y se modifican proporcionalmente las demás, provocando que la celda $(A, CD_1)$ se agote y salga de la base. Esta transición marca el fin de la iteración actual, generando una nueva solución básica factible que reduce el costo total del transporte y prepara el terreno para una nueva evaluación de multiplicadores.
+	
+	La celda $(A,\,CD_3)$ entra a la base. El ciclo cerrado es:
+	
+	\[
+	\underbrace{(A,\,CD_3)}_{+\theta}
+	\;\longrightarrow\;
+	\underbrace{(B,\,CD_3)}_{-\theta}
+	\;\longrightarrow\;
+	\underbrace{(B,\,CD_1)}_{+\theta}
+	\;\longrightarrow\;
+	\underbrace{(A,\,CD_1)}_{-\theta}
+	\]
+	
+	\[
+	\theta = \min\bigl(x_{B,CD_3},\; x_{A,CD_1}\bigr) = \min(35,\,5) = 5
+	\]
+	
+	Donde se corresponde a la siguiente actualización de asignaciones de unidades en función de los costos:
+	
+	\[
+	x_{A,CD_3} = 0+5 = 5, \qquad
+	x_{B,CD_3} = 35-5 = 30, \qquad
+	x_{B,CD_1} = 25+5 = 30, \qquad
+	x_{A,CD_1} = 5-5 = 0 \;\text{(sale)}
+	\]
+	
+	% =========================
+	% 9. NUEVA SOLUCIÓN
+	% =========================
+	\section{Nueva solución básica factible}
+	
+Dentro del proceso de la iteración construimos la nueva solución básica factible que se describe en la siguiente tabla, de forma en que la planta B distribuye al centro 1 30 unidades con un costo de 9 asi mismo al centro 3 con un total de 30 unidades a costo de 13 acabando su disponibilidad de 60, la planta A distribuye a dos centros, el primero corresponde al centro 2 con 45 unidades de costo 6 y el segundo corresponde al centro 3 con un valor de 5 unidades con un costo de 10 completando su disponibilidad, finalmente la casilla con menor costo de toda la matriz transporta 40 unidades a un costo de 5 desde la planta c hacia el centro de distribución 4 como se demuestra en lo siguiente:
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{2.4}
+		\begin{tabular}{>{\bfseries}c | cccc | >{\bfseries}c}
+			\hline\hline
+			& \textbf{$CD_1$} & \textbf{$CD_2$} & \textbf{$CD_3$} & \textbf{$CD_4$} & \textbf{Oferta} \\
+			\hline
+			$A$   & \NC{8}       & \BC{6}{45}  & \BC{10}{5}  & \NC{}       & 50 \\
+			$B$   & \BC{9}{30}   & \NC{}        & \BC{13}{30} & \NC{}       & 60 \\
+			$C$   & \NC{}         & \NC{}        & \NC{}        & \BC{5}{40}  & 40 \\
+			\hline
+			\textbf{Demanda} & \textbf{30} & \textbf{45} & \textbf{35} & \textbf{40} & \textbf{150} \\
+			\hline\hline
+		\end{tabular}
+		\caption{Solución básica factible tras la primera iteración}
+	\end{table}
+	
+	% =========================
+	% 10. NUEVO COSTO TOTAL
+	% =========================
+	\section{Nuevo costo total}
+	Al finalizar dicha iteración se describe el siguiente costo total con un valor de 1180 correspondiente a la sumatoria de los valores de cada casilla por el costo de transportar el producto a dicha posición. De modo en que se suma el valor de 45 por su costo de 6 y consiguientes. 
+	\[
+	Z = 45(6) + 5(10) + 30(9) + 30(13) + 40(5)
+	= 270 + 50 + 270 + 390 + 200
+	= \boxed{1{,}180}
+	\]
+	
+	% =========================
+	% 11. SEGUNDA ITERACIÓN MODI
+	% =========================
+	\section{Segunda iteración MODI}
+	
+	Para la segunda iteración, se actualiza el sistema de ecuaciones de los multiplicadores basándose en la nueva configuración de celdas básicas obtenida tras el ajuste de $\theta$. Manteniendo la convención de fijar $u_A = 0$, se recalculan los valores de las variables duales utilizando la relación $u_i + v_j = c_{ij}$ para las rutas activas. Este procedimiento permite deducir rápidamente que $v_2 = 6$ y $v_3 = 10$ a través de la primera fila; posteriormente, el valor de $v_3$ actúa como puente para determinar que $u_B = 3$, lo cual a su vez define el multiplicador de la primera columna como $v_1 = 6$.
+	
+	Este nuevo conjunto de multiplicadores refleja de manera precisa la estructura de costos de la solución actual y es fundamental para detectar posibles mejoras adicionales. Cabe destacar que el valor de $v_4$ se establece en 5 bajo el supuesto de que $u_C = 0$, completando así la red de parámetros necesarios para evaluar las celdas no básicas. Con estos datos consolidados, el modelo queda preparado para una nueva fase de comprobación de optimidad, donde se verificará si existe algún costo marginal que permita seguir reduciendo el gasto total de distribución.
+	
+	Fijando $u_A = 0$ y aplicando $u_i + v_j = c_{ij}$:
+	
+	\begin{align*}
+		u_A + v_2 &= 6  &&\Longrightarrow v_2 = 6  \\
+		u_A + v_3 &= 10 &&\Longrightarrow v_3 = 10 \\
+		u_B + v_3 &= 13 &&\Longrightarrow u_B = 3  \\
+		u_B + v_1 &= 9  &&\Longrightarrow v_1 = 6  \\
+		u_C + v_4 &= 5  &&\Longrightarrow u_C = 0,\quad v_4 = 5
+	\end{align*}
+	
+	Finalizado el proceso de cálculos se obtiene la tabla  conseguida durante la iteración anterior, comprobando que dicha respuesta corresponde al costo mínimo posible de transporte según las condiciones descritas mediante el problema planteado tomando en cuenta la oferta presentada por las plantas y la demanda de los centros de distribución. 
+	
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{2.4}
+		\begin{tabular}{cc | cccc | >{\bfseries}c}
+			\hline\hline
+			&       & $v_1=6$ & $v_2=6$ & $v_3=10$ & $v_4=5$ & \textbf{Oferta} \\
+			\hline
+			$u_A=0$ & $A$   & \NC{8}       & \BC{6}{45}  & \BC{10}{5}  & \NC{}       & 50 \\
+			$u_B=3$ & $B$   & \BC{9}{30}   & \NC{}        & \BC{13}{30} & \NC{}       & 60 \\
+			$u_C=0$ & $C$   & \NC{}         & \NC{}        & \NC{}        & \BC{5}{40}  & 40 \\
+			\hline
+			\multicolumn{2}{c|}{\textbf{Demanda}} & \textbf{30} & \textbf{45} & \textbf{35} & \textbf{40} & \textbf{150} \\
+			\hline\hline
+		\end{tabular}
+		\caption{Iteración 2 — Todos los costos reducidos $\Delta_{ij}>0$: solución óptima}
+	\end{table}
+	
+	\subsection{Verificación de optimalidad}
+	Para la verificación de optimalidad se analizara en función de lo descrito en la tabla anterior con la finalización de la tabla correspondiente a la segunda iteración del método de transporte MODI para lo cual se considera lo siguiente: 
+	Todos los costos reducidos $\Delta_{ij} = c_{ij} - u_i - v_j > 0$ para las celdas no básicas.
+	La solución es óptima.
+	
+	\[
+	\boxed{Z^* = 1{,}180}
+	\]
+
+
+	
+	\subsection{Datos Proporcionados}
+	
+	\subsubsection{Subtítulo de datos}
+	
+	Insertar tabla o datos aquí.
+	
+	\subsection{Tareas Específicas}
+	
+	\subsubsection{Tarea 1}
+	
+	Descripción de la tarea 1.
+	
+	\subsubsection{Implementación en R}
+	
+	Cree un script que:
+	
+	\begin{enumerate}
+		\item Cargue el paquete \texttt{lpSolve}
+		\item Defina la matriz de costos
+		\item Defina los vectores de capacidad y demanda
+		\item Ejecute \texttt{lp.transport()} con los parámetros correctos
+		\item Almacene el resultado en una variable
+	\end{enumerate}
+	
+	\textbf{Estructura base:}
+	
+	\begin{lstlisting}[caption={Estructura para el modelo de transporte}]
+		library(lpSolve)
+		
+		# Matriz de costos (3 filas, 4 columnas)
+		costos <- matrix(c(
+		8,  6, 10, 9,
+		9, 12, 13, 7,
+		14,  9, 16, 5
+		), nrow = 3, byrow = TRUE)
+		
+		# Capacidades (oferta)
+		capacidad <- c(50, 60, 40)
+		
+		# Demandas
+		demanda <- c(30, 45, 35, 40)
+		
+		# Resolver modelo de transporte
+		transporte <- lp.transport(
+		cost.mat  = costos,
+		direction = "min",
+		row.signs = rep("<=", 3),
+		row.rhs   = capacidad,
+		col.signs = rep(">=", 4),
+		col.rhs   = demanda
+		)
+	\end{lstlisting}
+	
+	\subsubsection{Extracción de Resultados}
+	
+	Extraiga y reporte:
+	
+	\begin{itemize}
+		\item Resultado 1.
+		\item Resultado 2.
+		\item Resultado 3.
+	\end{itemize}
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  SECCIÓN 3
+	% ══════════════════════════════════════════════════════════════════════════
+	\section{Parte 2: Título de la Parte}
+	
+	\subsection{Descripción del Problema}
+	
+	Descripción del problema a resolver en esta parte.
+	
+	\subsection{Datos Proporcionados}
+	
+	Insertar datos aquí.
+	
+	\subsection{Tareas Específicas}
+	
+	\subsubsection{Tarea 1}
+	
+	Descripción de la tarea 1.
+	
+	\subsubsection{Tarea 2}
+	
+	Descripción de la tarea 2.
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  SECCIÓN 4  ── corregida según la imagen
+	% ══════════════════════════════════════════════════════════════════════════
+	\section{Parte 3: Entrega final}
+	
+	\subsection{Estructura del informe}
+	
+	El informe debe contener las siguientes secciones:
+	
+	% ── 4.1.1 ──────────────────────────────────────────────────────────────
+	\subsubsection{Portada}
+	
+	\begin{itemize}
+		\item Título del proyecto
+		\item Nombre de los estudiantes
+		\item Asignatura y profesor
+		\item Fecha de entrega
+	\end{itemize}
+	
+	% ── 4.1.2 ──────────────────────────────────────────────────────────────
+	\subsubsection{Resumen (máx. 1 página)}
+	
+	\begin{itemize}
+		\item Problema planteado
+		\item Métodos utilizados
+		\item Principales resultados numéricos
+		\item Conclusión principal
+	\end{itemize}
+	
+	% ── 4.1.3  ─────────────────────────────────────────────────────────────
+	\subsubsection{Modelo de transporte}
+	
+	\begin{itemize}
+		\item Formulación matemática
+		\item Tabla de resultados (matriz de envíos)
+		\item Análisis de sensibilidad (al menos una variación)
+		\item Gráfico de flujos
+	\end{itemize}
+	
+	% ── 4.1.4 ──────────────────────────────────────────────────────────────
+	\subsubsection{Gestión del proyecto}
+	
+	\begin{itemize}
+		\item Tabla de actividades
+		\item Diagrama de red
+		\item Tabla PERT/CPM (TE, TL, holguras, crítica)
+		\item Diagrama de Gantt
+		\item Análisis de cumplimiento de plazo
+	\end{itemize}
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  (resto de sección 4 sin cambios)
+	% ══════════════════════════════════════════════════════════════════════════
+	\subsection{Criterios de Evaluación}
+	
+	\begin{center}
+		\begin{tabular}{|l|c|}
+			\hline
+			\textbf{Criterio}          & \textbf{Ponderación} \\ \hline
+			Criterio 1                 & 10\%                 \\ \hline
+			Criterio 2                 & 10\%                 \\ \hline
+			Criterio 3                 & 10\%                 \\ \hline
+			Presentación primera parte & 20\%                 \\ \hline
+			Criterio 4                 & 10\%                 \\ \hline
+			Criterio 5                 &  5\%                 \\ \hline
+			Criterio 6                 &  5\%                 \\ \hline
+			Calidad del informe        & 10\%                 \\ \hline
+			Presentación Final         & 20\%                 \\ \hline
+			\textbf{Total}             & \textbf{100\%}       \\ \hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Formato de Entrega}
+	
+	Archivos a entregar:
+	
+	\begin{enumerate}
+		\item \texttt{informe\_proyecto.pdf} -- Informe completo.
+		\item \texttt{codigo\_parte1.R} -- Script R parte 1.
+		\item \texttt{codigo\_parte2.R} -- Script R parte 2.
+	\end{enumerate}
+	
+	\textbf{Plazo:} 4 semanas desde la fecha de asignación.
+	
 \end{document}
