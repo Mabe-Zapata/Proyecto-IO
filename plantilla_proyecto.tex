@@ -624,35 +624,393 @@ Dentro del proceso de la iteración construimos la nueva solución básica facti
 	% ══════════════════════════════════════════════════════════════════════════
 	%  (resto de sección 4 sin cambios)
 	% ══════════════════════════════════════════════════════════════════════════
-	\subsection{Criterios de Evaluación}
 	
-	\begin{center}
-		\begin{tabular}{|l|c|}
-			\hline
-			\textbf{Criterio}          & \textbf{Ponderación} \\ \hline
-			Criterio 1                 & 10\%                 \\ \hline
-			Criterio 2                 & 10\%                 \\ \hline
-			Criterio 3                 & 10\%                 \\ \hline
-			Presentación primera parte & 20\%                 \\ \hline
-			Criterio 4                 & 10\%                 \\ \hline
-			Criterio 5                 &  5\%                 \\ \hline
-			Criterio 6                 &  5\%                 \\ \hline
-			Calidad del informe        & 10\%                 \\ \hline
-			Presentación Final         & 20\%                 \\ \hline
-			\textbf{Total}             & \textbf{100\%}       \\ \hline
-		\end{tabular}
-	\end{center}
 	
-	\subsection{Formato de Entrega}
+
+		\section{Anexos del proyecto}
+	% ──────────────────────────────────────────────────────────────────────────────
+	% ANEXO — Código R: Modelo de Transporte (Costo Mínimo + MODI)
+	% Compatible con el preámbulo del documento principal (listings ya cargado)
+	% ──────────────────────────────────────────────────────────────────────────────
 	
-	Archivos a entregar:
+	\appendix
+	\section*{Anexo: Código R — Modelo de Transporte}
+	\addcontentsline{toc}{section}{Anexo: Código R — Modelo de Transporte}
 	
-	\begin{enumerate}
-		\item \texttt{informe\_proyecto.pdf} -- Informe completo.
-		\item \texttt{codigo\_parte1.R} -- Script R parte 1.
-		\item \texttt{codigo\_parte2.R} -- Script R parte 2.
-	\end{enumerate}
+	El siguiente código implementa en R la resolución completa del modelo de transporte
+	presentado en este documento, incluyendo la solución inicial por el Método de Costo
+	Mínimo y la optimización mediante el Método MODI en dos iteraciones.
+	Para la presentación de resultados se utilizan los paquetes \texttt{knitr} y
+	\texttt{kableExtra}, que permiten generar tablas HTML con formato enriquecido.
 	
-	\textbf{Plazo:} 4 semanas desde la fecha de asignación.
+	% ── A.1 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.1\quad Carga de paquetes y datos del problema}
+	
+	\begin{lstlisting}[language=R, caption={Instalación de paquetes y definición de datos}]
+		if (!requireNamespace("knitr",      quietly = TRUE)) install.packages("knitr")
+		if (!requireNamespace("kableExtra", quietly = TRUE)) install.packages("kableExtra")
+		library(knitr)
+		library(kableExtra)   # row_spec, column_spec, pack_rows, cell_spec
+		
+		# ---------------------------------------------------------
+		# MODELO DE TRANSPORTE | Plantas A/B/C -> Centros CD1..CD4
+		# Metodo: Costo Minimo + MODI (dos iteraciones)
+		# ---------------------------------------------------------
+		costos <- matrix(
+		c( 8,  6, 10,  9,
+		9, 12, 13,  7,
+		14,  9, 16,  5),
+		nrow = 3, byrow = TRUE,
+		dimnames = list(c("A", "B", "C"),
+		c("CD1", "CD2", "CD3", "CD4"))
+		)
+		oferta  <- c(A = 50, B = 60, C = 40)
+		demanda <- c(CD1 = 30, CD2 = 45, CD3 = 35, CD4 = 40)
+	\end{lstlisting}
+	
+	% ── A.2 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.2\quad Funciones auxiliares para tablas de transporte}
+	
+	\begin{lstlisting}[language=R, caption={Función \texttt{tabla\_simple}: construcción de tablas de transporte}]
+		# Construye la tabla de transporte con formato kableExtra.
+		# Correccion: mapply() sobre matrices devuelve vector, no data.frame;
+		# se usa doble for() para poblar la matriz de celdas correctamente.
+		
+		tabla_simple <- function(asig, costos, oferta, demanda, caption = "") {
+			plantas <- rownames(costos)
+			centros <- colnames(costos)
+			n <- length(plantas)
+			m <- length(centros)
+			
+			# Celda basica: "[costo]  cantidad"; no basica: "[costo]"
+			celdas <- matrix("", n, m, dimnames = list(plantas, centros))
+			for (i in 1:n)
+			for (j in 1:m)
+			celdas[i, j] <- if (asig[i, j] == 0)
+			paste0("[", costos[i, j], "]")
+			else
+			paste0("[", costos[i, j], "]  **", asig[i, j], "**")
+			
+			df <- data.frame(celdas, Oferta = oferta,
+			check.names = FALSE, stringsAsFactors = FALSE)
+			df <- rbind(df, Demanda = c(as.character(demanda), sum(oferta)))
+			
+			df |>
+			kbl(caption = caption, escape = FALSE,
+			col.names = c(centros, "Oferta")) |>
+			kable_styling(bootstrap_options = c("bordered", "hover"),
+			full_width = FALSE, font_size = 13) |>
+			row_spec(0,     bold = TRUE, background = "#1D7A5F", color = "white") |>
+			row_spec(n + 1, bold = TRUE, background = "#E1F5EE") |>
+			column_spec(m + 2, bold = TRUE, background = "#E1F5EE") |>
+			column_spec(1,     bold = TRUE)
+		}
+	\end{lstlisting}
+	
+	% ── A.3 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.3\quad Comprobación de balanceo y matriz de costos}
+	
+	\begin{lstlisting}[language=R, caption={Verificación de balanceo y tabla de costos unitarios}]
+		oferta_total  <- sum(oferta)
+		demanda_total <- sum(demanda)
+		
+		# Tabla de balanceo
+		data.frame(
+		Concepto          = c("Oferta total (A+B+C)",
+		"Demanda total (CD1+CD2+CD3+CD4)"),
+		Valor             = c(oferta_total, demanda_total),
+		`Miles de litros` = c("50 + 60 + 40", "30 + 45 + 35 + 40"),
+		Estado            = c("OK", "OK"),
+		check.names = FALSE
+		) |>
+		kbl(caption = "Comprobacion de balanceo - Oferta = Demanda = 150",
+		align = "lccc") |>
+		kable_styling(bootstrap_options = c("striped", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		column_spec(4, color = "#0F6E56", bold = TRUE)
+		
+		# Matriz de costos unitarios
+		costos_df <- as.data.frame(costos)
+		costos_df$Oferta <- oferta
+		rbind(costos_df, Demanda = c(demanda, sum(oferta))) |>
+		kbl(caption = "Matriz de costos unitarios - c_ij ($/millar de litros)",
+		align = "ccccc") |>
+		kable_styling(bootstrap_options = c("bordered", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		row_spec(4, bold = TRUE, background = "#E1F5EE") |>
+		column_spec(1, bold = TRUE) |>
+		column_spec(6, bold = TRUE, background = "#E1F5EE")
+	\end{lstlisting}
+	
+	% ── A.4 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.4\quad Método de Costo Mínimo — solución inicial}
+	
+	\begin{lstlisting}[language=R, caption={Asignaciones por costo mínimo y cálculo de $Z_0$}]
+		# Asignaciones en orden creciente de c_ij:
+		#  1) C->CD4: min(40,40)=40   2) A->CD2: min(50,45)=45
+		#  3) A->CD1: min(5,30)=5     4) B->CD1: min(60,25)=25
+		#  5) B->CD3: min(35,35)=35
+		
+		asig_ini <- matrix(
+		c( 5, 45,  0,  0,
+		25,  0, 35,  0,
+		0,  0,  0, 40),
+		nrow = 3, byrow = TRUE,
+		dimnames = list(c("A", "B", "C"), c("CD1", "CD2", "CD3", "CD4"))
+		)
+		
+		# Secuencia de pasos
+		pasos <- data.frame(
+		Paso                  = 1:5,
+		Ruta                  = c("C -> CD4","A -> CD2","A -> CD1",
+		"B -> CD1","B -> CD3"),
+		c_ij                  = c(5, 6, 8, 9, 13),
+		`min(oferta,demanda)` = c("min(40,40)","min(50,45)","min(5,30)",
+		"min(60,25)","min(35,35)"),
+		x_ij                  = c(40, 45, 5, 25, 35),
+		check.names = FALSE
+		)
+		pasos |>
+		kbl(caption = "Metodo de Costo Minimo - secuencia de asignaciones",
+		align = "clccc") |>
+		kable_styling(bootstrap_options = c("striped", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		column_spec(5, bold = TRUE)
+		
+		# Tabla de transporte inicial
+		tabla_simple(asig_ini, costos, oferta, demanda,
+		caption = "Solucion basica factible inicial  [c_ij]  **x_ij** = asignado")
+		
+		# Costo inicial Z0
+		Z0 <- sum(costos * asig_ini)
+		
+		data.frame(
+		Ruta     = c("A -> CD1","A -> CD2","B -> CD1","B -> CD3","C -> CD4","TOTAL"),
+		c_ij     = c(8, 6, 9, 13, 5, NA),
+		x_ij     = c(5, 45, 25, 35, 40, sum(c(5,45,25,35,40))),
+		Subtotal = c(40, 270, 225, 455, 200, Z0),
+		check.names = FALSE
+		) |>
+		kbl(caption = paste0("Calculo del costo inicial  Z0 = ", Z0),
+		col.names = c("Ruta","Costo unitario","Cantidad","Subtotal"),
+		align = "lccc", na = "---") |>
+		kable_styling(bootstrap_options = c("striped", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		row_spec(6, bold = TRUE, background = "#fff3cd") |>
+		column_spec(4, bold = TRUE)
+	\end{lstlisting}
+	
+	% ── A.5 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.5\quad Método MODI — Primera iteración}
+	
+	\begin{lstlisting}[language=R, caption={Multiplicadores MODI y costos reducidos — Iteración 1}]
+		# Multiplicadores: u_A = 0 (referencia), u_i + v_j = c_ij
+		u1 <- c(A = 0, B = 1, C = 0)
+		v1 <- c(CD1 = 8, CD2 = 6, CD3 = 12, CD4 = 5)
+		
+		data.frame(
+		Variable = c("u_A","u_B","u_C","v_CD1","v_CD2","v_CD3","v_CD4"),
+		Valor    = c(u1, v1),
+		Ecuacion = c("fijo = 0",
+		"u_A + v1 = 8  => 0 + 8",
+		"u_C + v4 = 5  => v4 - 5",
+		"u_A + v1 = 8",
+		"u_A + v2 = 6",
+		"u_B + v3 = 13 => 1 + 12",
+		"u_C + v4 = 5  => 0 + 5")
+		) |>
+		kbl(caption = "Multiplicadores MODI - Iteracion 1  (u_A = 0 referencia)",
+		col.names = c("Variable dual","Valor","Ecuacion c_ij = u_i + v_j"),
+		align = "lcc") |>
+		kable_styling(bootstrap_options = c("striped", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		pack_rows("u_i - filas (plantas)",    1, 3) |>
+		pack_rows("v_j - columnas (centros)", 4, 7)
+		
+		# Costos reducidos Delta_ij = c_ij - u_i - v_j (solo celdas no basicas)
+		delta1 <- matrix(NA, 3, 4, dimnames = list(names(u1), names(v1)))
+		for (i in seq_along(u1))
+		for (j in seq_along(v1))
+		if (asig_ini[i, j] == 0)
+		delta1[i, j] <- costos[i, j] - u1[i] - v1[j]
+		
+		# Formato: basicas = "(basica)", negativas marcadas con *
+		d1_fmt <- matrix("(basica)", 3, 4, dimnames = dimnames(delta1))
+		for (i in 1:3)
+		for (j in 1:4)
+		if (!is.na(delta1[i, j]))
+		d1_fmt[i, j] <- if (delta1[i, j] < 0)
+		paste0(delta1[i, j], " *")
+		else
+		as.character(delta1[i, j])
+		
+		data.frame(Planta = rownames(delta1), d1_fmt, u_i = u1,
+		check.names = FALSE, row.names = NULL) |>
+		kbl(caption = "Costos reducidos Delta_ij - Iteracion 1  (* = entra a la base)",
+		col.names = c("Planta","CD1","CD2","CD3","CD4","u_i"),
+		align = "cccccc") |>
+		kable_styling(bootstrap_options = c("bordered", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		column_spec(1, bold = TRUE) |>
+		column_spec(4, background = "#FCEBEB", color = "#A32D2D", bold = TRUE)
+	\end{lstlisting}
+	
+	% ── A.6 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.6\quad Ciclo cerrado y cálculo de $\theta$}
+	
+	\begin{lstlisting}[language=R, caption={Ciclo cerrado, valor de $\theta$ y actualización de asignaciones}]
+		# Ciclo: (A,CD3)+ -> (B,CD3)- -> (B,CD1)+ -> (A,CD1)-
+		theta <- min(35, 5)   # minimo de celdas con signo "-" en el ciclo
+		
+		ciclo <- data.frame(
+		Orden    = 1:4,
+		Celda    = c("(A, CD3)","(B, CD3)","(B, CD1)","(A, CD1)"),
+		Signo    = c("+theta  <- entra", "-theta", "+theta", "-theta  <- sale"),
+		x_actual = c(0, 35, 25, 5),
+		x_nuevo  = c(0 + theta, 35 - theta, 25 + theta, 5 - theta),
+		check.names = FALSE
+		)
+		
+		ciclo |>
+		kbl(caption = paste0("Ciclo cerrado - theta = min(35, 5) = ", theta,
+		"  |  (A, CD1) sale de la base"),
+		col.names = c("Orden","Celda","Signo","x actual","x nuevo"),
+		align = "clccc") |>
+		kable_styling(bootstrap_options = c("striped", "hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		row_spec(1, bold = TRUE, background = "#E1F5EE", color = "#0F6E56") |>
+		row_spec(4, bold = TRUE, background = "#FCEBEB", color = "#A32D2D")
+	\end{lstlisting}
+	
+	% ── A.7 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.7\quad Nueva solución básica factible y costo $Z_1$}
+	
+	\begin{lstlisting}[language=R, caption={Solución tras la primera iteración y cálculo de $Z_1$}]
+		asig_it1 <- matrix(
+		c( 0, 45,  5,  0,
+		30,  0, 30,  0,
+		0,  0,  0, 40),
+		nrow = 3, byrow = TRUE,
+		dimnames = list(c("A","B","C"), c("CD1","CD2","CD3","CD4"))
+		)
+		Z1 <- sum(costos * asig_it1)
+		
+		# Tabla de transporte actualizada
+		tabla_simple(asig_it1, costos, oferta, demanda,
+		caption = paste0("Solucion basica factible - tras Iteracion 1  |  Z = ", Z1))
+		
+		# Detalle del costo Z1
+		data.frame(
+		Ruta     = c("A -> CD2","A -> CD3","B -> CD1","B -> CD3","C -> CD4","TOTAL"),
+		cij      = c(6, 10, 9, 13, 5, NA),
+		xij      = c(45, 5, 30, 30, 40, 150),
+		Subtotal = c(270, 50, 270, 390, 200, Z1),
+		check.names = FALSE
+		) |>
+		kbl(caption = paste0("Costo Z1 = ", Z1,
+		"  (ahorro vs Z0: ", Z0 - Z1, ")"),
+		col.names = c("Ruta","c_ij","x_ij","Subtotal"),
+		align = "lccc", na = "---") |>
+		kable_styling(bootstrap_options = c("striped","hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		row_spec(6, bold = TRUE, background = "#fff3cd") |>
+		column_spec(4, bold = TRUE)
+	\end{lstlisting}
+	
+	% ── A.8 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.8\quad Método MODI — Segunda iteración y verificación de optimalidad}
+	
+	\begin{lstlisting}[language=R, caption={Multiplicadores y costos reducidos — Iteración 2 (solución óptima)}]
+		u2 <- c(A = 0, B = 3, C = 0)
+		v2 <- c(CD1 = 6, CD2 = 6, CD3 = 10, CD4 = 5)
+		
+		data.frame(
+		Variable = c("u_A","u_B","u_C","v_CD1","v_CD2","v_CD3","v_CD4"),
+		Valor    = c(u2, v2),
+		Ecuacion = c("fijo = 0",
+		"u_B + v3 = 13 => 13 - 10",
+		"u_C + v4 = 5  => 0 + 5",
+		"u_B + v1 = 9  => v1 = 9 - 3",
+		"u_A + v2 = 6",
+		"u_A + v3 = 10",
+		"u_C + v4 = 5")
+		) |>
+		kbl(caption = "Multiplicadores MODI - Iteracion 2",
+		col.names = c("Variable dual","Valor","Ecuacion c_ij = u_i + v_j"),
+		align = "lcc") |>
+		kable_styling(bootstrap_options = c("striped","hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		pack_rows("u_i - filas (plantas)",    1, 3) |>
+		pack_rows("v_j - columnas (centros)", 4, 7)
+		
+		# Costos reducidos: todos > 0 => solucion optima
+		delta2 <- matrix(NA, 3, 4, dimnames = list(names(u2), names(v2)))
+		for (i in seq_along(u2))
+		for (j in seq_along(v2))
+		if (asig_it1[i, j] == 0)
+		delta2[i, j] <- costos[i, j] - u2[i] - v2[j]
+		
+		d2_fmt <- matrix("(basica)", 3, 4, dimnames = dimnames(delta2))
+		for (i in 1:3)
+		for (j in 1:4)
+		if (!is.na(delta2[i, j]))
+		d2_fmt[i, j] <- paste0(delta2[i, j], " OK")
+		
+		data.frame(Planta = rownames(delta2), d2_fmt, u_i = u2,
+		check.names = FALSE, row.names = NULL) |>
+		kbl(caption = "Costos reducidos Delta_ij - Iteracion 2  (todos > 0 => OPTIMO)",
+		col.names = c("Planta","CD1","CD2","CD3","CD4","u_i"),
+		align = "cccccc") |>
+		kable_styling(bootstrap_options = c("bordered","hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		column_spec(1, bold = TRUE)
+	\end{lstlisting}
+	
+	% ── A.9 ───────────────────────────────────────────────────────────────────────
+	\subsection*{A.9\quad Resumen de la solución óptima}
+	
+	\begin{lstlisting}[language=R, caption={Tabla resumen y salida en consola de la solución óptima $Z^*$}]
+		Z_opt <- sum(costos * asig_it1)
+		
+		# Tabla de rutas activas
+		data.frame(
+		Origen   = c("A","A","B","B","C","TOTAL"),
+		Destino  = c("CD2","CD3","CD1","CD3","CD4","---"),
+		cij      = c(6, 10, 9, 13, 5, NA),
+		xij      = c(45, 5, 30, 30, 40, 150),
+		Subtotal = c(270, 50, 270, 390, 200, Z_opt),
+		check.names = FALSE
+		) |>
+		kbl(caption = paste0("SOLUCION OPTIMA - Z* = ", Z_opt,
+		"  |  Ahorro vs Z0: ", Z0 - Z_opt),
+		col.names = c("Origen","Destino","c_ij","x_ij (miles L)","Subtotal"),
+		align = "ccccc", na = "---") |>
+		kable_styling(bootstrap_options = c("striped","hover"),
+		full_width = FALSE, font_size = 13) |>
+		row_spec(0, bold = TRUE, background = "#1D7A5F", color = "white") |>
+		row_spec(6, bold = TRUE, background = "#E1F5EE", color = "#0F6E56") |>
+		column_spec(5, bold = TRUE)
+		
+		# Resumen en consola
+		cat("\n", strrep("=", 44), "\n")
+		cat("   RESUMEN - MODELO DE TRANSPORTE\n")
+		cat("  ", strrep("-", 40), "\n")
+		cat(sprintf("   Z0  costo inicial  :  %6d\n", Z0))
+		cat(sprintf("   Z1  tras iter. 1  :  %6d\n", Z1))
+		cat(sprintf("   Z*  optimo        :  %6d  (*)\n", Z_opt))
+		cat(sprintf("   Ahorro total      :  %6d\n",   Z0 - Z_opt))
+		cat("  ", strrep("=", 44), "\n\n")
+	\end{lstlisting}
+	
 	
 \end{document}

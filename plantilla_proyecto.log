@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.1)  5 MAY 2026 21:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.6)  6 MAY 2026 12:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -604,6 +604,9 @@ Package xtemplate Info: Declaring object type 'xfrac' taking 3 argument(s) on
 \lst@lineno=\count342
 \lst@maxwidth=\dimen301
 
+(C:\Program Files\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2023/02/27 1.9 (Carsten Heinz)
+)
 (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \c@lstnumber=\count343
@@ -719,12 +722,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 162
 (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<imagenes/uta.png, id=143, 45.6615pt x 45.6615pt>
+<imagenes/uta.png, id=139, 45.6615pt x 45.6615pt>
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
 Package pdftex.def Info: imagenes/uta.png  used on input line 175.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
-<imagenes/fisei.png, id=145, 45.16875pt x 45.16875pt>
+<imagenes/fisei.png, id=141, 45.16875pt x 45.16875pt>
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
 Package pdftex.def Info: imagenes/fisei.png  used on input line 175.
@@ -838,22 +841,83 @@ Package pdftex.def Info: imagenes/fisei.png  used on input line 577.
  [10]
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 644.
+Package pdftex.def Info: imagenes/uta.png  used on input line 647.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 644.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 647.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
  [11]
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 658.
+Package pdftex.def Info: imagenes/uta.png  used on input line 701.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 658.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 701.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
- [12] (plantilla_proyecto.aux
+ [12]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+735.
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 757.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 757.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+
+[13]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 812.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 812.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [14]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 867.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 867.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [15]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 925.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 925.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [16]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 977.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 977.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [17]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 1016.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 1016.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [18] (plantilla_proyecto.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -861,42 +925,51 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `plantilla_proyecto.out' has not changed.
-(rerunfilecheck)             Checksum: C6ED3AE241EB2FA2B8A4A46E8E4D3D5F;5953.
+
+
+Package rerunfilecheck Warning: File `plantilla_proyecto.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `plantilla_proyecto.out':
+(rerunfilecheck)             Before: 5145A8255A1151CA170BCF4F50CAD154;5759
+(rerunfilecheck)             After:  BCC9166F68BDFE5AB8C02523B059E41B;6018.
  ) 
 Here is how much of TeX's memory you used:
- 17664 strings out of 474486
- 306545 string characters out of 5743756
- 2099542 words of memory out of 5000000
- 39643 multiletter control sequences out of 15000+600000
- 566937 words of font info for 71 fonts, out of 8000000 for 9000
+ 18151 strings out of 474480
+ 313294 string characters out of 5743607
+ 2612542 words of memory out of 5000000
+ 39775 multiletter control sequences out of 15000+600000
+ 570024 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,21n,107p,824b,2064s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmbx7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/patyl/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/patyl/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/patyl/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/patyl/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
-s/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb>
-<C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr5.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmr7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr9.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/patyl/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/patyl/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/patyl/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Users/patyl/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/User
-s/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-
-Output written on plantilla_proyecto.pdf (12 pages, 346398 bytes).
+ 94i,21n,107p,824b,2070s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\patyl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
+0900.pk><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmbx7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/patyl/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/patyl/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/patyl/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/
+patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C
+:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+9.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr5.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/patyl/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/patyl/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/patyl/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/pa
+tyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/
+Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10
+.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmtt9.pfb>
+Output written on plantilla_proyecto.pdf (18 pages, 444110 bytes).
 PDF statistics:
- 396 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
- 291 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 836 PDF objects out of 1000 (max. 8388607)
+ 437 named destinations out of 1000 (max. 500000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 
