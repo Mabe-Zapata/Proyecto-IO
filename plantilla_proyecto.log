@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.1)  4 MAY 2026 15:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.6)  6 MAY 2026 12:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -386,61 +386,263 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
-) (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count295
-\lst@gtempboxa=\box55
-\lst@token=\toks27
-\lst@length=\count296
-\lst@currlwidth=\dimen180
-\lst@column=\count297
-\lst@pos=\count298
-\lst@lostspace=\dimen181
-\lst@width=\dimen182
-\lst@newlines=\count299
-\lst@lineno=\count300
-\lst@maxwidth=\dimen183
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/tabularray\tabularray.s
+ty
+Package: tabularray 2025-08-29 v2025B Typeset tabulars and arrays with LaTeX3
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/ninecolors\ninecolors.s
+ty
+Package: ninecolors 2022-02-13 v2022D Select colors with proper color contrast
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2024-01-04 L3 programming layer (loader) 
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count295
+\l__pdf_internal_box=\box55
+))
+Package: xparse 2023-10-10 L3 Experimental document command parser
+))
+\l__tblr_a_int=\count296
+\l__tblr_c_int=\count297
+\l__tblr_r_int=\count298
+\l__tblr_d_dim=\dimen180
+\l__tblr_h_dim=\dimen181
+\l__tblr_o_dim=\dimen182
+\l__tblr_p_dim=\dimen183
+\l__tblr_q_dim=\dimen184
+\l__tblr_r_dim=\dimen185
+\l__tblr_s_dim=\dimen186
+\l__tblr_t_dim=\dimen187
+\l__tblr_v_dim=\dimen188
+\l__tblr_w_dim=\dimen189
+\l__tblr_a_box=\box56
+\l__tblr_b_box=\box57
+\l__tblr_c_box=\box58
+\l__tblr_d_box=\box59
+\c@tblrcount=\count299
+\c@rownum=\count300
+\c@colnum=\count301
+\c@rowcount=\count302
+\c@colcount=\count303
+\abovesep=\dimen190
+\belowsep=\dimen191
+\leftsep=\dimen192
+\rightsep=\dimen193
+\gTblrLevelInt=\count304
+\g__tblr_data_row_key_count_int=\count305
+\g__tblr_data_column_key_count_int=\count306
+\g__tblr_data_cell_key_count_int=\count307
+\g__tblr_array_int=\count308
+\l__tblr_key_count_int=\count309
+\l__tblr_key_quotient_int=\count310
+\l__tblr_key_quotient_two_int=\count311
+\l__tblr_key_remainder_int=\count312
+\g__tblr_data_str_value_count_int=\count313
+\lTblrChildTotalInt=\count314
+\lTblrChildHtotalInt=\count315
+\lTblrChildVtotalInt=\count316
+\l__child_diff_h_int=\count317
+\l__child_diff_v_int=\count318
+\l__child_sign_h_int=\count319
+\l__child_sign_v_int=\count320
+\l__child_step_int=\count321
+\lTblrDefaultHruleWidthDim=\dimen194
+\lTblrDefaultVruleWidthDim=\dimen195
+\l__tblr_split_balance_int=\count322
+\l__tblr_strut_dp_dim=\dimen196
+\l__tblr_strut_ht_dim=\dimen197
+\g__tblr_cell_wd_dim=\dimen198
+\g__tblr_cell_ht_dim=\dimen199
+\g__tblr_cell_head_dim=\dimen256
+\g__tblr_cell_foot_dim=\dimen257
+\l__tblr_measured_cell_box=\box60
+\g__tblr_last_box=\box61
+\l__tblr_temp_box=\box62
+\l__tblr_column_target_dim=\dimen258
+\l__tblr_hfuzz_dim=\dimen259
+\l__tblr_caption_box=\box63
+\l__tblr_caption_left_box=\box64
+\lTblrRowHeadInt=\count323
+\lTblrRowFootInt=\count324
+\l__tblr_row_head_box=\box65
+\l__tblr_row_foot_box=\box66
+\l__tblr_row_head_foot_dim=\dimen260
+\lTblrTableWidthDim=\dimen261
+\l__tblr_table_firsthead_box=\box67
+\l__tblr_table_middlehead_box=\box68
+\l__tblr_table_lasthead_box=\box69
+\l__tblr_table_firstfoot_box=\box70
+\l__tblr_table_middlefoot_box=\box71
+\l__tblr_table_lastfoot_box=\box72
+\l__tblr_remain_height_dim=\dimen262
+\l__tblr_long_from_int=\count325
+\l__tblr_long_to_int=\count326
+\l__tblr_curr_i_int=\count327
+\l__tblr_prev_i_int=\count328
+\lTblrTablePageInt=\count329
+\l__tblr_table_head_box=\box73
+\l__tblr_table_foot_box=\box74
+\l__tblr_table_head_foot_dim=\dimen263
+\l__tblr_table_head_body_foot_dim=\dimen264
+\l__tblr_table_box=\box75
+\lTblrRowFirstInt=\count330
+\lTblrRowLastInt=\count331
+\l__tblr_table_hlines_box=\box76
+\l__tblr_hline_box=\box77
+\l__tblr_row_box=\box78
+\l__tblr_col_o_wd_dim=\dimen265
+\l__tblr_col_b_wd_dim=\dimen266
+\l__tblr_hline_leftskip_dim=\dimen267
+\l__tblr_hline_rightskip_dim=\dimen268
+\l__tblr_row_ht_dim=\dimen269
+\l__tblr_row_dp_dim=\dimen270
+\l__tblr_row_abovesep_dim=\dimen271
+\l__tblr_row_belowsep_dim=\dimen272
+\l__tblr_row_vlines_box=\box79
+\l__tblr_vline_box=\box80
+\l__tblr_cell_box=\box81
+\l__tblr_row_upper_dim=\dimen273
+\l__tblr_row_lower_dim=\dimen274
+\l__tblr_row_vpace_dim=\dimen275
+\l__tblr_vline_aboveskip_dim=\dimen276
+\l__tblr_vline_belowskip_dim=\dimen277
+\lTblrCellRowSpanInt=\count332
+\lTblrCellColSpanInt=\count333
+\l__tblr_cell_wd_dim=\dimen278
+\l__tblr_cell_ht_dim=\dimen279
+\lTblrCellAboveBorderWidthDim=\dimen280
+\lTblrCellBelowBorderWidthDim=\dimen281
+\lTblrCellLeftBorderWidthDim=\dimen282
+\lTblrCellRightBorderWidthDim=\dimen283
+\l__tblr_diag_box=\box82
+\l__tblr_cell_inner_wd_dim=\dimen284
+\l__tblr_cell_inner_dp_dim=\dimen285
+\l__tblr_cell_hanchor_dim=\dimen286
+\l__tblr_last_cell_table_ht_dim=\dimen287
+\l__tblr_last_cell_table_dp_dim=\dimen288
+\l__tblr_last_vline_wd_dim=\dimen289
+\l__tblr_tikz_node_box=\box83
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
+\everycr=\toks27
+\minrowclearance=\skip70
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen290
+\c@nlinenum=\count334
+\TeXr@lab=\toks28
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip71
+\multirow@cntb=\count335
+\multirow@dima=\skip72
+\bigstrutjot=\dimen291
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xfrac\xfrac.
+sty
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3k
+eys2e.sty
+Package: l3keys2e 2023-10-10 LaTeX2e option processing using LaTeX3 keys
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xtemplate\xt
+emplate.sty
+Package: xtemplate 2023-10-10 L3 Experimental prototype document functions
+\l__xtemplate_tmp_dim=\dimen292
+\l__xtemplate_tmp_int=\count336
+\l__xtemplate_tmp_muskip=\muskip18
+\l__xtemplate_tmp_skip=\skip73
+)
+Package: xfrac 2023-10-10 L3 Experimental split-level fractions
+\l__xfrac_slash_box=\box84
+\l__xfrac_tmp_box=\box85
+\l__xfrac_denominator_bot_sep_dim=\dimen293
+\l__xfrac_numerator_bot_sep_dim=\dimen294
+\l__xfrac_numerator_top_sep_dim=\dimen295
+\l__xfrac_slash_left_sep_dim=\dimen296
+\l__xfrac_slash_right_sep_dim=\dimen297
+\l__xfrac_slash_left_muskip=\muskip19
+\l__xfrac_slash_right_muskip=\muskip20
+
+Package xtemplate Info: Declaring object type 'xfrac' taking 3 argument(s) on
+(xtemplate)             line 80.
+
+)
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count337
+\lst@gtempboxa=\box86
+\lst@token=\toks29
+\lst@length=\count338
+\lst@currlwidth=\dimen298
+\lst@column=\count339
+\lst@pos=\count340
+\lst@lostspace=\dimen299
+\lst@width=\dimen300
+\lst@newlines=\count341
+\lst@lineno=\count342
+\lst@maxwidth=\dimen301
+
+(C:\Program Files\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2023/02/27 1.9 (Carsten Heinz)
+)
 (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count301
-\lst@skipnumbers=\count302
-\lst@framebox=\box56
+\c@lstnumber=\count343
+\lst@skipnumbers=\count344
+\lst@framebox=\box87
 )
 (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
-
-(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
-tex.def
-File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count303
-\l__pdf_internal_box=\box57
-) (plantilla_proyecto.aux
+(plantilla_proyecto.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
 \openout1 = `plantilla_proyecto.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Info: Redefining \. on input line 89.
-LaTeX Info: Redefining \% on input line 89.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Info: Redefining \. on input line 136.
+LaTeX Info: Redefining \% on input line 136.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -450,15 +652,15 @@ LaTeX Info: Redefining \% on input line 89.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(85.35826pt, 443.57848pt, 85.35826pt)
-* v-part:(T,H,B)=(85.35826pt, 638.47984pt, 71.13188pt)
+* h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
+* v-part:(T,H,B)=(56.9055pt, 624.25346pt, 113.81102pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=443.57848pt
-* \textheight=638.47984pt
-* \oddsidemargin=13.08827pt
-* \evensidemargin=13.08827pt
-* \topmargin=-23.91173pt
+* \textwidth=500.484pt
+* \textheight=624.25346pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-52.36449pt
 * \headheight=70.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -480,17 +682,17 @@ LaTeX Info: Redefining \% on input line 89.
 (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count304
-\scratchdimen=\dimen184
-\scratchbox=\box58
-\nofMPsegments=\count305
-\nofMParguments=\count306
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count307
-\MPscratchDim=\dimen185
-\MPnumerator=\count308
-\makeMPintoPDFobject=\count309
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count345
+\scratchdimen=\dimen302
+\scratchbox=\box88
+\nofMPsegments=\count346
+\nofMParguments=\count347
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count348
+\MPscratchDim=\dimen303
+\MPnumerator=\count349
+\makeMPintoPDFobject=\count350
+\everyMPtoPDFconversion=\toks31
 )
 (C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -502,23 +704,36 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 89.
+Package hyperref Info: Link coloring ON on input line 136.
  (plantilla_proyecto.out) (plantilla_proyecto.out)
 \@outlinefile=\write3
 \openout3 = `plantilla_proyecto.out'.
 
-\c@lstlisting=\count310
-<imagenes/uta.png, id=107, 45.6615pt x 45.6615pt>
+\c@lstlisting=\count351
+LaTeX Font Info:    Trying to load font information for U+msa on input line 162
+.
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 162
+.
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<imagenes/uta.png, id=139, 45.6615pt x 45.6615pt>
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 125.
+Package pdftex.def Info: imagenes/uta.png  used on input line 175.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
-<imagenes/fisei.png, id=109, 45.16875pt x 45.16875pt>
+<imagenes/fisei.png, id=141, 45.16875pt x 45.16875pt>
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 125.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 175.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
- [1{C:/Users/patyl/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
+
+[1{C:/Users/patyl/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
  <./imagenes/uta.png> <./imagenes/fisei.png>] (plantilla_proyecto.toc
 LaTeX Info: Redefining \. on input line 1.
@@ -529,53 +744,180 @@ LaTeX Info: Redefining \% on input line 1.
 
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 131.
+Package pdftex.def Info: imagenes/uta.png  used on input line 181.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 131.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 181.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
  [2]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 200.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 201.
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 205.
+Package pdftex.def Info: imagenes/uta.png  used on input line 224.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 205.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 224.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
  [3]
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 271.
+Package pdftex.def Info: imagenes/uta.png  used on input line 265.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 271.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 265.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
  [4]
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 328.
+Package pdftex.def Info: imagenes/uta.png  used on input line 314.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 328.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 314.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
  [5]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\theta' on input line 374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 374.
+
 File: imagenes/uta.png Graphic file (type png)
 <use imagenes/uta.png>
-Package pdftex.def Info: imagenes/uta.png  used on input line 332.
+Package pdftex.def Info: imagenes/uta.png  used on input line 377.
 (pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
 File: imagenes/fisei.png Graphic file (type png)
 <use imagenes/fisei.png>
-Package pdftex.def Info: imagenes/fisei.png  used on input line 332.
+Package pdftex.def Info: imagenes/fisei.png  used on input line 377.
 (pdftex.def)             Requested size: 56.9055pt x 56.906pt.
- [6] (plantilla_proyecto.aux
+[6]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 427.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 427.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [7]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 459.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 459.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [8]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 514.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 515.
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 517.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 517.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [9]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 577.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 577.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [10]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 647.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 647.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [11]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 701.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 701.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [12]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+735.
+
+(C:\Users\patyl\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 757.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 757.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+
+[13]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 812.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 812.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [14]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 867.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 867.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [15]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 925.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 925.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [16]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 977.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 977.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [17]
+File: imagenes/uta.png Graphic file (type png)
+<use imagenes/uta.png>
+Package pdftex.def Info: imagenes/uta.png  used on input line 1016.
+(pdftex.def)             Requested size: 56.9055pt x 56.9067pt.
+File: imagenes/fisei.png Graphic file (type png)
+<use imagenes/fisei.png>
+Package pdftex.def Info: imagenes/fisei.png  used on input line 1016.
+(pdftex.def)             Requested size: 56.9055pt x 56.906pt.
+ [18] (plantilla_proyecto.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -583,30 +925,51 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `plantilla_proyecto.out' has not changed.
-(rerunfilecheck)             Checksum: 35A1A35B9FFCB9E63822E7BDD3FDED0B;4233.
+
+
+Package rerunfilecheck Warning: File `plantilla_proyecto.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `plantilla_proyecto.out':
+(rerunfilecheck)             Before: 5145A8255A1151CA170BCF4F50CAD154;5759
+(rerunfilecheck)             After:  BCC9166F68BDFE5AB8C02523B059E41B;6018.
  ) 
 Here is how much of TeX's memory you used:
- 13734 strings out of 474486
- 213469 string characters out of 5743756
- 2116542 words of memory out of 5000000
- 35802 multiletter control sequences out of 15000+600000
- 561293 words of font info for 48 fonts, out of 8000000 for 9000
+ 18151 strings out of 474480
+ 313294 string characters out of 5743607
+ 2612542 words of memory out of 5000000
+ 39775 multiletter control sequences out of 15000+600000
+ 570024 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,17n,79p,532b,2067s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmbx7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/patyl/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/patyl/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/patyl/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/patyl/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/pa
-tyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on plantilla_proyecto.pdf (6 pages, 211950 bytes).
+ 94i,21n,107p,824b,2070s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\patyl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
+0900.pk><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmbx7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/patyl/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/patyl/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/patyl/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/
+patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C
+:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+9.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr5.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr7.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/patyl/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/patyl/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/patyl/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/pa
+tyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/
+Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10
+.pfb><C:/Users/patyl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmtt9.pfb>
+Output written on plantilla_proyecto.pdf (18 pages, 444110 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
- 70 named destinations out of 1000 (max. 500000)
- 219 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 836 PDF objects out of 1000 (max. 8388607)
+ 437 named destinations out of 1000 (max. 500000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 
