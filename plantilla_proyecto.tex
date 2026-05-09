@@ -19,13 +19,25 @@ marginparwidth=1.75cm]{geometry}
 \usepackage{tabularray}
 \usepackage{xcolor}
 
- \usepackage{colortbl}
+\usepackage{colortbl}
 
- \usepackage{makecell}
- \usepackage{multirow}
- \usepackage{amsmath}
- \usepackage{amssymb}
- \usepackage{xfrac}     % para fracciones opcionales
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xfrac}     % para fracciones opcionales
+
+% ── Paquetes para gráfico de flujos ────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% ── Colores auxiliares para análisis y gráfico de flujos ───────────────────
+\definecolor{verdePrincipal}{RGB}{29,122,95}
+\definecolor{verdeClaro}{RGB}{225,245,238}
+\definecolor{amarilloAlerta}{RGB}{255,243,205}
+\definecolor{rojoClaro}{RGB}{252,235,235}
+\definecolor{azulInfo}{RGB}{232,244,253}
+
 
 % ---- Macros globales para tablas de transporte ----
 \definecolor{celBasica}{gray}{0.78}
@@ -113,7 +125,7 @@ marginparwidth=1.75cm]{geometry}
 \fancyhead[C]{%
 	\begin{minipage}[c]{2.0cm}
 		\centering
-		\includegraphics[width=2.0cm]{imagenes/uta.png}
+		\IfFileExists{imagenes/uta.png}{\includegraphics[width=2.0cm]{imagenes/uta.png}}{\fbox{UTA}}
 	\end{minipage}%
 	\hfill
 	\begin{minipage}[c]{9cm}
@@ -126,7 +138,7 @@ marginparwidth=1.75cm]{geometry}
 	\hfill
 	\begin{minipage}[c]{2.0cm}
 		\centering
-		\includegraphics[width=2.0cm]{imagenes/fisei.png}
+		\IfFileExists{imagenes/fisei.png}{\includegraphics[width=2.0cm]{imagenes/fisei.png}}{\fbox{FISEI}}
 	\end{minipage}%
 }
 \fancyfoot[C]{\thepage}
@@ -182,7 +194,7 @@ marginparwidth=1.75cm]{geometry}
 	\tableofcontents
 	\newpage
 	
-
+	
 	
 	% ══════════════════════════════════════════════════════════════════════════
 	%  SECCIÓN 1
@@ -200,8 +212,8 @@ marginparwidth=1.75cm]{geometry}
 	\]
 	
 	\subsection{Función objetivo}
-
-La función objetivo del modelo de transporte planteado tiene como propósito minimizar el costo total en que incurre el sistema logístico al trasladar agua potable que se encuentra medida en miles de litros desde las tres plantas de producción descritos como A, B y C hacia los cuatro centros de distribución nombrados como 1, 2, 3 y 4. Formalmente, dicha función se expresa como:
+	
+	La función objetivo del modelo de transporte planteado tiene como propósito minimizar el costo total en que incurre el sistema logístico al trasladar agua potable que se encuentra medida en miles de litros desde las tres plantas de producción descritos como A, B y C hacia los cuatro centros de distribución nombrados como 1, 2, 3 y 4. Formalmente, dicha función se expresa como:
 	\[
 	\min Z =
 	8x_{A1} + 6x_{A2} + 10x_{A3} + 9x_{A4}
@@ -263,7 +275,7 @@ La función objetivo del modelo de transporte planteado tiene como propósito mi
 	
 	En consecuencia, cada una de las doce variables de decisión xij, donde i representa la planta de origen perteneciente al conjunto {A, B, C} y j representa el centro de distribución destino perteneciente al conjunto {1, 2, 3, 4}, debe tomar un valor mayor o igual a cero.
 	
-	 Esto implica que variables como xA1, xA2, xA3, xA4, xB1, xB2, xB3, xB4, xC1, xC2, xC3 y xC4 pueden adoptar el valor de cero cuando el modelo determine que una ruta particular no debe ser utilizada dentro de la solución óptima, o bien asumir cualquier valor positivo que exprese el volumen en miles de litros efectivamente transportado a través de dicha ruta. Esta restricción, si bien es la más sencilla en su formulación, resulta indispensable para garantizar que la solución obtenida sea matemáticamente válida y operativamente interpretable dentro del contexto real del problema de distribución de agua potable.
+	Esto implica que variables como xA1, xA2, xA3, xA4, xB1, xB2, xB3, xB4, xC1, xC2, xC3 y xC4 pueden adoptar el valor de cero cuando el modelo determine que una ruta particular no debe ser utilizada dentro de la solución óptima, o bien asumir cualquier valor positivo que exprese el volumen en miles de litros efectivamente transportado a través de dicha ruta. Esta restricción, si bien es la más sencilla en su formulación, resulta indispensable para garantizar que la solución obtenida sea matemáticamente válida y operativamente interpretable dentro del contexto real del problema de distribución de agua potable.
 	
 	\[
 	x_{ij} \geq 0 \quad \forall i,j
@@ -295,8 +307,8 @@ La función objetivo del modelo de transporte planteado tiene como propósito mi
 	% =========================
 	\section{Solución inicial (Método de Costo Mínimo)}
 	
-Con la finalidad de encontrar el valor mínimo mas optimo desde el punto inicial de las iteraciones, se decidió iniciar el cálculo mediante la resolución en costos mínimos, este proceso fue realizado con una asignación efectuada de forma creciente para los distintos valores posibles de costo unitario de transporte desde un punto de abasto o planta de producción hacia un punto de distribución, para una comprensión numérica del proceso ejecutado se enlistan los pasos y las plantas en las que se realizo el proceso en lo siguiente:
-
+	Con la finalidad de encontrar el valor mínimo mas optimo desde el punto inicial de las iteraciones, se decidió iniciar el cálculo mediante la resolución en costos mínimos, este proceso fue realizado con una asignación efectuada de forma creciente para los distintos valores posibles de costo unitario de transporte desde un punto de abasto o planta de producción hacia un punto de distribución, para una comprensión numérica del proceso ejecutado se enlistan los pasos y las plantas en las que se realizo el proceso en lo siguiente:
+	
 	\begin{enumerate}
 		\item $C \to CD_4$: $\min(40,\,40)=40$
 		\item $A \to CD_2$: $\min(50,\,45)=45$
@@ -305,7 +317,7 @@ Con la finalidad de encontrar el valor mínimo mas optimo desde el punto inicial
 		\item $B \to CD_3$: $\min(35,\,35)=35$
 	\end{enumerate}
 	
-
+	
 	
 	
 	% =========================
@@ -340,7 +352,7 @@ Con la finalidad de encontrar el valor mínimo mas optimo desde el punto inicial
 	% =========================
 	\section{Método MODI — Primera iteración}
 	
-Dentro de la primera iteración a partir de la solución inicial obtenida mediante el método de costo mínimo en el paso anterior, se procede a aplicar el método MODI basado en los multiplicadores  para la obtención de los valores correspondientes a la celdas básicas tomando en cuenta la formula tratada en clase que relaciona los valores de las celdas y sus costos.
+	Dentro de la primera iteración a partir de la solución inicial obtenida mediante el método de costo mínimo en el paso anterior, se procede a aplicar el método MODI basado en los multiplicadores  para la obtención de los valores correspondientes a la celdas básicas tomando en cuenta la formula tratada en clase que relaciona los valores de las celdas y sus costos.
 	Fijando $u_A = 0$ y aplicando $u_i + v_j = c_{ij}$ para cada celda básica:
 	
 	\begin{align*}
@@ -409,7 +421,7 @@ Dentro de la primera iteración a partir de la solución inicial obtenida median
 	% =========================
 	\section{Nueva solución básica factible}
 	
-Dentro del proceso de la iteración construimos la nueva solución básica factible que se describe en la siguiente tabla, de forma en que la planta B distribuye al centro 1 30 unidades con un costo de 9 asi mismo al centro 3 con un total de 30 unidades a costo de 13 acabando su disponibilidad de 60, la planta A distribuye a dos centros, el primero corresponde al centro 2 con 45 unidades de costo 6 y el segundo corresponde al centro 3 con un valor de 5 unidades con un costo de 10 completando su disponibilidad, finalmente la casilla con menor costo de toda la matriz transporta 40 unidades a un costo de 5 desde la planta c hacia el centro de distribución 4 como se demuestra en lo siguiente:
+	Dentro del proceso de la iteración construimos la nueva solución básica factible que se describe en la siguiente tabla, de forma en que la planta B distribuye al centro 1 30 unidades con un costo de 9 asi mismo al centro 3 con un total de 30 unidades a costo de 13 acabando su disponibilidad de 60, la planta A distribuye a dos centros, el primero corresponde al centro 2 con 45 unidades de costo 6 y el segundo corresponde al centro 3 con un valor de 5 unidades con un costo de 10 completando su disponibilidad, finalmente la casilla con menor costo de toda la matriz transporta 40 unidades a un costo de 5 desde la planta c hacia el centro de distribución 4 como se demuestra en lo siguiente:
 	\begin{table}[ht]
 		\centering
 		\renewcommand{\arraystretch}{2.4}
@@ -477,15 +489,529 @@ Dentro del proceso de la iteración construimos la nueva solución básica facti
 	\end{table}
 	
 	\subsection{Verificación de optimalidad}
-	Para la verificación de optimalidad se analizara en función de lo descrito en la tabla anterior con la finalización de la tabla correspondiente a la segunda iteración del método de transporte MODI para lo cual se considera lo siguiente: 
-	Todos los costos reducidos $\Delta_{ij} = c_{ij} - u_i - v_j > 0$ para las celdas no básicas.
-	La solución es óptima.
+	Para la verificación de optimalidad se analiza la solución resultante de la segunda iteración del método MODI. La comprobación formal se complementa con el análisis de sensibilidad, donde se calculan los costos reducidos $\Delta_{ij}=c_{ij}-u_i-v_j$ para las rutas no básicas. Al no existir costos reducidos negativos, la solución se considera óptima para el problema de minimización.
 	
 	\[
 	\boxed{Z^* = 1{,}180}
 	\]
-
-
+	
+	
+	
+	
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  ANÁLISIS DE SENSIBILIDAD — PARTE CORRESPONDIENTE A ERICK GUERRON
+	% ══════════════════════════════════════════════════════════════════════════
+	\section{Análisis de Sensibilidad}
+	
+	El análisis de sensibilidad permite evaluar la estabilidad de la solución óptima del
+	modelo de transporte frente a variaciones en los costos unitarios de las rutas. En esta
+	parte se analizan principalmente las rutas no básicas, es decir, aquellas que no reciben
+	asignación positiva dentro de la solución óptima, pero que podrían activarse si sus costos
+	cambian.
+	
+	La solución óptima obtenida es:
+	
+	\[
+	Z^* = 1{,}180
+	\]
+	
+	con las siguientes rutas activas:
+	
+	\[
+	x_{A,CD_2}=45,\quad
+	x_{A,CD_3}=5,\quad
+	x_{B,CD_1}=30,\quad
+	x_{B,CD_3}=30,\quad
+	x_{C,CD_4}=40
+	\]
+	
+	El costo total se verifica mediante la suma de los productos entre cada cantidad asignada
+	y su respectivo costo unitario:
+	
+	\[
+	Z^* = 45(6) + 5(10) + 30(9) + 30(13) + 40(5)
+	\]
+	
+	\[
+	Z^* = 270 + 50 + 270 + 390 + 200 = \boxed{1{,}180}
+	\]
+	
+	Para realizar el análisis de sensibilidad se emplean los multiplicadores del método MODI.
+	A cada fila se le asocia un multiplicador $u_i$ y a cada columna un multiplicador $v_j$.
+	En las celdas básicas se cumple la siguiente relación:
+	
+	\[
+	u_i + v_j = c_{ij}
+	\]
+	
+	Posteriormente, para cada celda no básica se calcula el costo reducido:
+	
+	\[
+	\Delta_{ij} = c_{ij} - u_i - v_j
+	\]
+	
+	La interpretación de los costos reducidos es la siguiente:
+	
+	\begin{itemize}
+		\item Si $\Delta_{ij} > 0$, la ruta no básica puede reducir su costo hasta cierto
+		límite sin modificar la solución óptima.
+		\item Si $\Delta_{ij} = 0$, existe una solución óptima alternativa.
+		\item Si $\Delta_{ij} < 0$, la solución actual podría mejorar mediante una nueva
+		reasignación.
+	\end{itemize}
+	
+	\subsection{Consideración de degeneración}
+	
+	En el modelo analizado existen $m=3$ orígenes y $n=4$ destinos. Por tanto, una solución
+	básica no degenerada debería contener:
+	
+	\[
+	m+n-1 = 3+4-1 = 6
+	\]
+	
+	Sin embargo, la solución óptima presenta cinco rutas activas con asignación positiva. Por
+	esta razón, se identifica una solución degenerada. Para efectuar el análisis MODI se puede
+	considerar una celda auxiliar con valor $\varepsilon$ o seleccionar un conjunto de
+	multiplicadores duales que conserve la factibilidad de los costos reducidos.
+	
+	En este caso, se utilizan los siguientes multiplicadores duales:
+	
+	\[
+	u_A = 0,\quad u_B = 3,\quad u_C = 1
+	\]
+	
+	\[
+	v_{CD_1}=6,\quad v_{CD_2}=6,\quad v_{CD_3}=10,\quad v_{CD_4}=4
+	\]
+	
+	Estos valores permiten verificar que todos los costos reducidos de las rutas no básicas
+	son mayores o iguales que cero, por lo que la solución se mantiene óptima.
+	
+	\subsection{Costos reducidos de las rutas no básicas}
+	
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{ccccc}
+			\toprule
+			\textbf{Ruta no básica} & $c_{ij}$ & $u_i+v_j$ & $\Delta_{ij}$ & \textbf{Interpretación} \\
+			\midrule
+			$(A, CD_1)$ & 8  & 6  & 2 & Puede bajar hasta $c=6$ \\
+			$(A, CD_4)$ & 9  & 4  & 5 & Puede bajar hasta $c=4$ \\
+			$(B, CD_2)$ & 12 & 9  & 3 & Puede bajar hasta $c=9$ \\
+			$(B, CD_4)$ & 7  & 7  & 0 & Óptimo alternativo \\
+			$(C, CD_1)$ & 14 & 7  & 7 & Puede bajar hasta $c=7$ \\
+			$(C, CD_2)$ & 9  & 7  & 2 & Puede bajar hasta $c=7$ \\
+			$(C, CD_3)$ & 16 & 11 & 5 & Puede bajar hasta $c=11$ \\
+			\bottomrule
+		\end{tabular}
+		\caption{Análisis de sensibilidad para las rutas no básicas}
+	\end{table}
+	
+	De acuerdo con la tabla anterior, todos los costos reducidos son mayores o iguales que
+	cero. Por ello, se confirma la optimalidad de la solución obtenida para el problema de
+	minimización. Además, la ruta $(B, CD_4)$ presenta un costo reducido igual a cero, lo que
+	significa que existe una solución óptima alternativa. Esta condición indica que dicha ruta
+	podría ingresar a la base sin incrementar el costo total mínimo del modelo.
+	
+	Desde el punto de vista logístico, este resultado es importante porque permite identificar
+	una ruta adicional que podría utilizarse bajo criterios operativos complementarios, como
+	disponibilidad de vehículos, tiempos de entrega, restricciones de carga o condiciones
+	externas de distribución.
+	
+	\subsection{Implementación del análisis de sensibilidad en R}
+	
+	En la aplicación Shiny, el análisis de sensibilidad se implementó mediante una función
+	auxiliar encargada de calcular los multiplicadores MODI a partir de la matriz de
+	asignaciones óptimas y la matriz de costos. El procedimiento recorre las celdas básicas y
+	resuelve los valores $u_i$ y $v_j$ aplicando la relación $u_i+v_j=c_{ij}$.
+	
+	\begin{lstlisting}[language=R, caption={Funcion para calcular multiplicadores MODI}]
+		calcular_multiplicadores <- function(asig, costos, m, n) {
+			u <- rep(NA_real_, m)
+			v <- rep(NA_real_, n)
+			
+			names(u) <- rownames(costos)
+			names(v) <- colnames(costos)
+			
+			u[1] <- 0
+			
+			for (iter in seq_len((m + n) * 30)) {
+				for (i in seq_len(m)) {
+					for (j in seq_len(n)) {
+						if (asig[i, j] > 0) {
+							if (!is.na(u[i]) && is.na(v[j])) {
+								v[j] <- costos[i, j] - u[i]
+							} else if (is.na(u[i]) && !is.na(v[j])) {
+								u[i] <- costos[i, j] - v[j]
+							}
+						}
+					}
+				}
+				
+				if (!any(is.na(u)) && !any(is.na(v))) {
+					break
+				}
+			}
+			
+			u[is.na(u)] <- 0
+			v[is.na(v)] <- 0
+			
+			list(u = u, v = v)
+		}
+	\end{lstlisting}
+	
+	Después de obtener los multiplicadores, se calcula la matriz de costos reducidos. Las
+	celdas con asignación positiva se consideran básicas, mientras que las celdas con valor
+	igual a cero se evalúan mediante la fórmula $\Delta_{ij}=c_{ij}-u_i-v_j$.
+	
+	\begin{lstlisting}[language=R, caption={Calculo de costos reducidos}]
+		delta <- matrix(
+		NA_real_,
+		nrow = m,
+		ncol = n,
+		dimnames = dimnames(asig_opt)
+		)
+		
+		for (i in seq_len(m)) {
+			for (j in seq_len(n)) {
+				if (asig_opt[i, j] == 0) {
+					delta[i, j] <- mat_c[i, j] - u_v$u[i] - u_v$v[j]
+				}
+			}
+		}
+	\end{lstlisting}
+	
+	La información generada se presenta en la interfaz mediante una tabla de sensibilidad que
+	incluye la ruta evaluada, el costo actual $c_{ij}$, el valor $u_i+v_j$, el costo reducido
+	$\Delta_{ij}$ y el estado de cada ruta.
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  GRÁFICO DE FLUJOS — PARTE CORRESPONDIENTE A ERICK GUERRON
+	% ══════════════════════════════════════════════════════════════════════════
+	\section{Gráfico de Flujos de la Solución Óptima}
+	
+	El gráfico de flujos permite representar visualmente la solución óptima del modelo de
+	transporte. En esta representación, las plantas se ubican como nodos de origen y los
+	centros de distribución como nodos de destino. Cada flecha representa una ruta activa, es
+	decir, una ruta con asignación positiva dentro de la solución óptima.
+	
+	El propósito del gráfico es facilitar la interpretación visual del resultado obtenido,
+	debido a que permite observar de manera directa qué plantas abastecen a cada centro de
+	distribución, qué cantidad se transporta por cada ruta y cuál es el costo unitario
+	asociado.
+	
+	\subsection{Rutas activas representadas}
+	
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{ccccc}
+			\toprule
+			\textbf{Origen} & \textbf{Destino} & \textbf{Costo unitario} & \textbf{Cantidad} & \textbf{Subtotal} \\
+			\midrule
+			$A$ & $CD_2$ & 6  & 45 & 270 \\
+			$A$ & $CD_3$ & 10 & 5  & 50  \\
+			$B$ & $CD_1$ & 9  & 30 & 270 \\
+			$B$ & $CD_3$ & 13 & 30 & 390 \\
+			$C$ & $CD_4$ & 5  & 40 & 200 \\
+			\midrule
+			\multicolumn{4}{r}{\textbf{Costo total óptimo}} & \textbf{1{,}180} \\
+			\bottomrule
+		\end{tabular}
+		\caption{Rutas activas de la solución óptima}
+	\end{table}
+	
+	\subsection{Diagrama de flujos}
+	
+	\begin{center}
+		\begin{tikzpicture}[
+			planta/.style={circle, draw=verdePrincipal, fill=verdeClaro,
+				very thick, minimum size=1.2cm, font=\bfseries},
+			centro/.style={circle, draw=orange!80!black, fill=amarilloAlerta,
+				very thick, minimum size=1.2cm, font=\bfseries},
+			flujo/.style={-{Stealth[length=3mm]}, very thick},
+			etiqueta/.style={font=\small\bfseries, fill=white, inner sep=2pt,
+				rounded corners=2pt}
+			]
+			
+			% Nodos de origen
+			\node[planta] (A) at (0,  3.5) {A};
+			\node[planta] (B) at (0,  0)   {B};
+			\node[planta] (C) at (0, -3.5) {C};
+			
+			% Nodos de destino
+			\node[centro] (D1) at (7,  5.5) {$CD_1$};
+			\node[centro] (D2) at (7,  2)   {$CD_2$};
+			\node[centro] (D3) at (7, -2)   {$CD_3$};
+			\node[centro] (D4) at (7, -5.5) {$CD_4$};
+			
+			% Flujos activos
+			\draw[flujo, color=verdePrincipal, line width=3pt]
+			(A) -- (D2) node[etiqueta, pos=0.4] {45 ml, c=6};
+			
+			\draw[flujo, color=verdePrincipal, line width=1.2pt]
+			(A) -- (D3) node[etiqueta, pos=0.5] {5 ml, c=10};
+			
+			\draw[flujo, color=blue!70!black, line width=2.2pt]
+			(B) -- (D1) node[etiqueta, pos=0.4] {30 ml, c=9};
+			
+			\draw[flujo, color=blue!70!black, line width=2.2pt]
+			(B) -- (D3) node[etiqueta, pos=0.55] {30 ml, c=13};
+			
+			\draw[flujo, color=red!70!black, line width=2.8pt]
+			(C) -- (D4) node[etiqueta, pos=0.4] {40 ml, c=5};
+			
+			% Oferta
+			\node[left=0.3cm of A, font=\small] {$s_A=50$};
+			\node[left=0.3cm of B, font=\small] {$s_B=60$};
+			\node[left=0.3cm of C, font=\small] {$s_C=40$};
+			
+			% Demanda
+			\node[right=0.3cm of D1, font=\small] {$d_1=30$};
+			\node[right=0.3cm of D2, font=\small] {$d_2=45$};
+			\node[right=0.3cm of D3, font=\small] {$d_3=35$};
+			\node[right=0.3cm of D4, font=\small] {$d_4=40$};
+			
+			% Costo total
+			\node[draw=verdePrincipal, fill=verdeClaro, rounded corners, very thick,
+			font=\bfseries, inner sep=8pt]
+			at (3.5, -7.5) {Costo total óptimo $Z^* = 1{,}180$};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	El diagrama evidencia que la ruta con mayor volumen es $A \rightarrow CD_2$, con 45 mil
+	litros transportados. En cambio, la ruta con menor volumen es $A \rightarrow CD_3$, con
+	5 mil litros. Las demás rutas activas mantienen una distribución intermedia que permite
+	cubrir la totalidad de la demanda sin exceder la oferta disponible de cada planta.
+	
+	\subsection{Implementación del gráfico de flujos en Shiny}
+	
+	En la aplicación, el gráfico se genera a partir de las rutas activas de la matriz de
+	asignación. Primero se recorren las celdas de la solución óptima y se almacenan solamente
+	aquellas rutas cuyo flujo es mayor que cero.
+	
+	\begin{lstlisting}[language=R, caption={Extraccion de rutas activas}]
+		orig_a <- character()
+		dest_a <- character()
+		flu_a  <- numeric()
+		cost_a <- numeric()
+		
+		for (i in rownames(asig_opt)) {
+			for (j in colnames(asig_opt)) {
+				if (asig_opt[i, j] > 0) {
+					orig_a <- c(orig_a, i)
+					dest_a <- c(dest_a, j)
+					flu_a  <- c(flu_a, asig_opt[i, j])
+					cost_a <- c(cost_a, mat_c[i, j])
+				}
+			}
+		}
+	\end{lstlisting}
+	
+	Posteriormente, se construye un grafo dirigido utilizando el paquete \texttt{igraph}. Los
+	nodos corresponden a plantas y centros de distribución, mientras que las aristas
+	representan las rutas activas de transporte.
+	
+	\begin{lstlisting}[language=R, caption={Construccion del grafo de flujos}]
+		nodos <- c(rownames(costos), colnames(costos))
+		
+		g <- make_empty_graph(n = length(nodos), directed = TRUE)
+		V(g)$name <- nodos
+		
+		for (k in seq_along(orig_a)) {
+			g <- add_edges(g, c(orig_a[k], dest_a[k]))
+		}
+		
+		E(g)$width <- (flu_a / max(flu_a)) * 9 + 1.5
+		E(g)$label <- paste0(flu_a, "\nc=", cost_a)
+	\end{lstlisting}
+	
+	El grosor de cada arista se calcula de forma proporcional al volumen transportado. Por
+	ello, las rutas con mayor cantidad asignada se visualizan con líneas más gruesas,
+	mientras que las rutas con menor cantidad se muestran con líneas más delgadas.
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  REVISIÓN GENERAL DEL CÓDIGO Y MEJORA DE INTERFACES — PARTE CORRESPONDIENTE
+	%  A ERICK GUERRON
+	% ══════════════════════════════════════════════════════════════════════════
+	\section{Revisión general del código y mejora de interfaces}
+	
+	Además del análisis matemático, se realizó una revisión general del código de la
+	aplicación con el objetivo de mejorar su estructura, estabilidad y presentación visual. La
+	aplicación fue desarrollada en Shiny y organizada en tres bloques principales:
+	dependencias, interfaz de usuario y lógica del servidor.
+	
+	La revisión permitió identificar problemas relacionados con el desbordamiento de campos
+	de entrada, distribución poco flexible de los paneles, tipografía demasiado compacta y
+	falta de validaciones antes de ejecutar el modelo. Para corregir estos aspectos, se
+	aplicaron mejoras tanto en la estructura del código como en el diseño visual de la
+	interfaz.
+	
+	\subsection{Mejoras aplicadas al código}
+	
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{p{4cm}p{10cm}}
+			\toprule
+			\textbf{Elemento revisado} & \textbf{Mejora implementada} \\
+			\midrule
+			Dependencias &
+			Se validó la instalación y carga automática de los paquetes necesarios:
+			\texttt{shiny}, \texttt{lpSolve}, \texttt{igraph}, \texttt{DT} y
+			\texttt{shinyjs}. \\
+			
+			Estructura del código &
+			Se separaron funciones auxiliares, construcción de interfaz y lógica del servidor
+			para facilitar la lectura y mantenimiento. \\
+			
+			Validación de datos &
+			Se incorporaron controles para evitar valores vacíos, negativos o inconsistentes
+			en costos, oferta y demanda. \\
+			
+			Balanceo del modelo &
+			Se agregó balanceo automático mediante origen ficticio o destino ficticio cuando
+			la oferta total y la demanda total no coinciden. \\
+			
+			Resolución del modelo &
+			Se empleó \texttt{lp.transport()} para resolver el problema de transporte de
+			forma exacta. \\
+			
+			Resultados &
+			Se organizaron los resultados en pestañas, incluyendo asignación óptima, rutas
+			activas, sensibilidad y gráfico de flujos. \\
+			
+			Interfaz &
+			Se corrigieron problemas de desbordamiento de inputs, se mejoró la tipografía y
+			se aplicó un diseño responsivo. \\
+			\bottomrule
+		\end{tabular}
+		\caption{Resumen de mejoras aplicadas al código y a la interfaz}
+	\end{table}
+	
+	\subsection{Validación previa a la resolución}
+	
+	Una de las mejoras incorporadas fue la validación de datos antes de resolver el modelo.
+	Esto evita que la aplicación intente ejecutar el algoritmo con información incompleta o no
+	válida.
+	
+	\begin{lstlisting}[language=R, caption={Validaciones antes de resolver el modelo}]
+		if (any(is.na(mat_c)) || any(is.na(oferta)) || any(is.na(demanda))) {
+			showNotification(
+			"Existen valores vacios o no validos. Revisa costos, oferta y demanda.",
+			type = "error"
+			)
+			return()
+		}
+		
+		if (any(mat_c < 0) || any(oferta < 0) || any(demanda < 0)) {
+			showNotification(
+			"Los costos, ofertas y demandas no pueden ser negativos.",
+			type = "error"
+			)
+			return()
+		}
+		
+		if (sum(oferta) == 0 || sum(demanda) == 0) {
+			showNotification(
+			"La oferta y la demanda total deben ser mayores que cero.",
+			type = "error"
+			)
+			return()
+		}
+	\end{lstlisting}
+	
+	Estas validaciones fortalecen la robustez de la aplicación, debido a que reducen errores
+	de ejecución y orientan al usuario sobre los datos que debe corregir.
+	
+	\subsection{Corrección visual de los campos de entrada}
+	
+	En la versión inicial de la interfaz, algunos campos de entrada podían salirse de los
+	paneles, especialmente en la matriz de costos. Para solucionar este problema, se
+	corrigieron los anchos de los elementos generados por Shiny y se estableció una
+	estructura flexible para los formularios.
+	
+	\begin{lstlisting}[language=R, caption={Correccion de ancho para inputs en Shiny}]
+		.shiny-input-container {
+			width: 100% !important;
+			max-width: 100% !important;
+			min-width: 0 !important;
+			margin-bottom: 0 !important;
+		}
+		
+		.form-control,
+		input[type=number],
+		input[type=text],
+		select.form-control {
+			width: 100% !important;
+			min-width: 0 !important;
+			height: 42px !important;
+			border-radius: 10px !important;
+		}
+	\end{lstlisting}
+	
+	Esta corrección permitió que los campos numéricos y de texto se mantengan dentro de sus
+	contenedores, evitando que se superpongan o salgan visualmente del panel principal.
+	
+	\subsection{Mejora de la matriz de costos}
+	
+	La matriz de costos fue rediseñada mediante una grilla flexible. Esta mejora permite que
+	el caso base $3 \times 4$ se visualice de forma ordenada y que, en caso de aumentar el
+	número de destinos, se active un desplazamiento horizontal controlado sin romper la
+	interfaz.
+	
+	\begin{lstlisting}[language=R, caption={Estructura flexible para la matriz de costos}]
+		div(
+		class = "matrix-scroll",
+		div(
+		class = "matrix-grid",
+		style = paste0(
+		"grid-template-columns: minmax(56px, 70px) repeat(",
+		n,
+		", minmax(110px, 1fr));"
+		)
+		)
+		)
+	\end{lstlisting}
+	
+	Con esta estructura, la aplicación mantiene una visualización estable incluso cuando el
+	usuario modifica las dimensiones del problema de transporte.
+	
+	\subsection{Mejora de la experiencia de usuario}
+	
+	La interfaz fue mejorada mediante el uso de tarjetas, pestañas, tablas dinámicas y una
+	distribución visual más ordenada. Esto permite que el usuario pueda ingresar datos,
+	resolver el modelo e interpretar los resultados de forma progresiva.
+	
+	Las principales mejoras visuales fueron:
+	
+	\begin{itemize}
+		\item Diseño de panel lateral para configuración del problema.
+		\item Separación de secciones mediante tarjetas visuales.
+		\item Uso de pestañas para organizar resultados.
+		\item Corrección de inputs y formularios para evitar desbordamientos.
+		\item Implementación de una matriz con desplazamiento horizontal controlado.
+		\item Incorporación de indicadores KPI para costo óptimo, rutas activas y unidades
+		transportadas.
+		\item Adaptación responsiva para pantallas medianas o pequeñas.
+	\end{itemize}
+	
+	\subsection{Conclusión de la revisión}
+	
+	La revisión general permitió complementar la resolución del modelo de transporte con una
+	aplicación más clara, estable y fácil de utilizar. El análisis de sensibilidad confirmó la
+	optimalidad de la solución y evidenció la existencia de una ruta con costo reducido igual
+	a cero, lo cual representa una posible solución alternativa. El gráfico de flujos facilitó
+	la comprensión visual de la red de distribución óptima, mostrando con claridad las rutas
+	activas, las cantidades transportadas y los costos asociados.
+	
+	Finalmente, las correcciones aplicadas a los campos de entrada, la matriz de costos, las
+	validaciones y la presentación de resultados contribuyen a que la aplicación sea más
+	robusta y adecuada para el análisis interactivo de problemas de transporte.
+	
 	
 	\subsection{Datos Proporcionados}
 	
@@ -628,8 +1154,8 @@ Dentro del proceso de la iteración construimos la nueva solución básica facti
 	% ══════════════════════════════════════════════════════════════════════════
 	
 	
-
-		\section{Anexos del proyecto}
+	
+	\section{Anexos del proyecto}
 	% ──────────────────────────────────────────────────────────────────────────────
 	% ANEXO — Código R: Modelo de Transporte (Costo Mínimo + MODI)
 	% Compatible con el preámbulo del documento principal (listings ya cargado)
