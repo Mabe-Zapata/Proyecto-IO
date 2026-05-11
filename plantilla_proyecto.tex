@@ -15,15 +15,10 @@ marginparwidth=1.75cm]{geometry}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{parskip}
-\usepackage{xcolor}
-\usepackage{tabularray}
-\usepackage{xcolor}
-
-\usepackage{colortbl}
+\usepackage[table]{xcolor}
 
 \usepackage{makecell}
 \usepackage{multirow}
-\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xfrac}     % para fracciones opcionales
 
@@ -71,10 +66,10 @@ marginparwidth=1.75cm]{geometry}
 
 \renewcommand{\arraystretch}{2.4}
 
-% Definición de estilo para las celdas de transporte
-\NewChildSelector{transport}{
-	\every{c,r} = {m, c, wd=1.2cm, ht=1cm}
-}
+% Definición de estilo para las celdas de transporte (Omitido por incompatibilidad de tabularray)
+% \NewChildSelector{transport}{
+% 	\every{c,r} = {m, c, wd=1.2cm, ht=1cm}
+% }
 
 % ── Listings (código R con colores) ────────────────────────────────────────
 \usepackage{listings}
@@ -174,7 +169,7 @@ marginparwidth=1.75cm]{geometry}
 		\begin{tabular}{rl}
 			\textbf{Estudiantes:} & Erick Guerron  \\
 			& Mauricio Guevara  \\
-			& Erick Lopez 3 \\
+			& Erick Lopez \\
 			& Maria Zapata \\[0.4cm]
 			\textbf{Docente:}     & Mat. Inti Becerra, Mg. \\[0.2cm]
 			\textbf{Fecha:}       & Agregar Fecha \\[0.2cm]
@@ -383,7 +378,7 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 8. CICLO Y THETA
 	% =========================
-	\section{Ciclo cerrado y cálculo de $\theta$}
+	\section{Ciclo cerrado y cálculo de \texorpdfstring{$\theta$}{theta}}
 	
 	Tras identificar que la celda $(A, CD_3)$ posee un costo marginal negativo, se procede a la construcción de un ciclo cerrado para redistribuir las unidades y optimizar el costo total. Este camino se traza partiendo de la celda entrante y desplazándose horizontal y verticalmente solo a través de celdas básicas existentes, alternando signos positivos y negativos para mantener el equilibrio de la oferta y la demanda. En este caso, el ciclo vincula las posiciones $(A, CD_3)$, $(B, CD_3)$, $(B, CD_1)$ y $(A, CD_1)$, permitiendo un ajuste dinámico de las cantidades asignadas sin alterar las restricciones de los orígenes y destinos.
 	
@@ -1073,7 +1068,60 @@ marginparwidth=1.75cm]{geometry}
 		\item Resultado 2.
 		\item Resultado 3.
 	\end{itemize}
-	
+% =============================================================
+% INTERPRETACIÓN Y GESTIÓN
+% =============================================================
+
+\subsection{Interpretación de resultados de transporte}
+
+A partir de la solución óptima obtenida ($Z^* = 1,180$), se presentan las siguientes conclusiones operativas:
+
+\begin{enumerate}
+    \item \textbf{¿Qué planta envía más producto? y ¿Por qué?} \\
+    La \textbf{Planta B} es la que realiza el mayor envío, con un total de 60 mil litros[cite: 1318]. Esto se debe a que el modelo está balanceado (Oferta = Demanda = 150), lo que obliga a agotar la capacidad total de las plantas. Al tener la Planta B la mayor capacidad inicial, lidera el volumen de distribución[cite: 1318].
+
+    \item \textbf{¿Qué ruta es la más utilizada? y ¿Qué ruta no se utiliza?} \\
+    La ruta más utilizada es de la \textbf{Planta A al CD2}, con un envío de 45 mil litros. Por otro lado, no se utilizan aquellas rutas cuyos costos marginales no favorecen la minimización, como por ejemplo la ruta de la Planta A al CD1 o Planta C al CD1.
+
+    \item \textbf{¿Por qué la Planta C solo envía a un CD?} \\
+    La Planta C envía sus 40 mil litros exclusivamente al CD4. Esto ocurre porque el costo unitario de esta ruta es de \$5, el cual representa \textbf{el costo de transporte más bajo de todo el sistema}[cite: 1321].
+
+    \item \textbf{¿Qué pasaría si la demanda de CD4 aumenta a 50?} \\
+    El sistema se desbalancearía, ya que la demanda total (160) superaría la oferta (150)[cite: 1318, 1319]. Sería necesario crear una \textbf{planta ficticia} con capacidad de 10 para equilibrar el modelo, indicando que habría un déficit de suministro en los centros.
+\end{enumerate}
+
+\section{Parte 2: Gestión del proyecto (PERT/CPM)}
+
+\subsection{Tabla de actividades}
+
+De acuerdo con los datos técnicos proporcionados para la instalación de la red de distribución[cite: 1426]:
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|l|c|c|}
+        \hline
+        \textbf{Actividad} & \textbf{Descripción} & \textbf{Duración (días)} & \textbf{Predecesor} \\ \hline
+        A & Diseño de ruta & 5 & --- \\ \hline
+        B & Compra de válvulas & 3 & A \\ \hline
+        C & Instalación en CD1 & 4 & B \\ \hline
+        D & Instalación en CD2 & 6 & B \\ \hline
+        E & Pruebas de flujo & 2 & C, D \\ \hline
+        F & Capacitación & 3 & E \\ \hline
+        G & Inicio de operación & 1 & F \\ \hline
+    \end{tabular}
+    \caption{Listado de actividades y tiempos del proyecto}
+\end{table}
+
+\subsection{Diagrama de red}
+
+El diagrama de red representa la secuencia lógica y las dependencias entre las actividades del proyecto. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/red_proyecto.png} 
+    \caption{Diagrama de red del proyecto de instalación}
+\end{figure}
+
 	% ══════════════════════════════════════════════════════════════════════════
 	%  SECCIÓN 3
 	% ══════════════════════════════════════════════════════════════════════════
@@ -1537,6 +1585,8 @@ marginparwidth=1.75cm]{geometry}
 		cat(sprintf("   Ahorro total      :  %6d\n",   Z0 - Z_opt))
 		cat("  ", strrep("=", 44), "\n\n")
 	\end{lstlisting}
-	
+\nocite{*}
+	\bibliographystyle{plain}
+	\bibliography{sample}	
 	
 \end{document}
