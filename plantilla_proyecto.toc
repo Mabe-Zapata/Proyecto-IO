@@ -36,20 +36,20 @@
 \contentsline {subsubsection}{\numberline {11.8.2}Implementación en R}{18}{subsubsection.11.8.2}%
 \contentsline {subsubsection}{\numberline {11.8.3}Extracción de Resultados}{19}{subsubsection.11.8.3}%
 \contentsline {subsection}{\numberline {11.9}Interpretación de resultados de transporte}{19}{subsection.11.9}%
-\contentsline {section}{\numberline {12}Parte 2: Gestión del proyecto (PERT/CPM)}{19}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Tabla de actividades}{19}{subsection.12.1}%
+\contentsline {section}{\numberline {12}Parte 2: Gestión del proyecto (PERT/CPM)}{20}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Tabla de actividades}{20}{subsection.12.1}%
 \contentsline {subsection}{\numberline {12.2}Diagrama de red}{20}{subsection.12.2}%
-\contentsline {section}{\numberline {13}Parte 2: Título de la Parte}{20}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Descripción del Problema}{20}{subsection.13.1}%
-\contentsline {subsection}{\numberline {13.2}Datos Proporcionados}{20}{subsection.13.2}%
-\contentsline {subsection}{\numberline {13.3}Tareas Específicas}{20}{subsection.13.3}%
-\contentsline {subsubsection}{\numberline {13.3.1}Tarea 1}{20}{subsubsection.13.3.1}%
-\contentsline {subsubsection}{\numberline {13.3.2}Tarea 2}{20}{subsubsection.13.3.2}%
-\contentsline {section}{\numberline {14}Parte 3: Entrega final}{20}{section.14}%
-\contentsline {subsection}{\numberline {14.1}Estructura del informe}{20}{subsection.14.1}%
-\contentsline {subsubsection}{\numberline {14.1.1}Portada}{21}{subsubsection.14.1.1}%
-\contentsline {subsubsection}{\numberline {14.1.2}Resumen (máx. 1 página)}{21}{subsubsection.14.1.2}%
-\contentsline {subsubsection}{\numberline {14.1.3}Modelo de transporte}{21}{subsubsection.14.1.3}%
+\contentsline {section}{\numberline {13}Parte 2: Título de la Parte}{21}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Descripción del Problema}{21}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Datos Proporcionados}{21}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Tareas Específicas}{21}{subsection.13.3}%
+\contentsline {subsubsection}{\numberline {13.3.1}Tarea 1}{21}{subsubsection.13.3.1}%
+\contentsline {subsubsection}{\numberline {13.3.2}Tarea 2}{21}{subsubsection.13.3.2}%
+\contentsline {section}{\numberline {14}Parte 3: Entrega final}{21}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Estructura del informe}{21}{subsection.14.1}%
+\contentsline {subsubsection}{\numberline {14.1.1}Portada}{22}{subsubsection.14.1.1}%
+\contentsline {subsubsection}{\numberline {14.1.2}Resumen (máx. 1 página)}{22}{subsubsection.14.1.2}%
+\contentsline {subsubsection}{\numberline {14.1.3}Modelo de transporte}{22}{subsubsection.14.1.3}%
 \contentsline {subsubsection}{\numberline {14.1.4}Gestión del proyecto}{22}{subsubsection.14.1.4}%
 \contentsline {section}{\numberline {15}Anexos del proyecto}{22}{section.15}%
 \contentsline {section}{Anexo: Código R — Modelo de Transporte}{22}{section*.2}%
