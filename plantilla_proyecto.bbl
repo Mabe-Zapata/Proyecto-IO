@@ -1,8 +1,51 @@
 \begin{thebibliography}{1}
 
-\bibitem{greenwade93}
-George~D. Greenwade.
-\newblock The {C}omprehensive {T}ex {A}rchive {N}etwork ({CTAN}).
-\newblock {\em TUGBoat}, 14(3):342--351, 1993.
+\bibitem{bazaraa2010}
+Mokhtar~S. Bazaraa, John~J. Jarvis, and Hanif~D. Sherali.
+\newblock {\em Linear Programming and Network Flows}.
+\newblock John Wiley \& Sons, New Jersey, 4 edition, 2010.
+
+\bibitem{lpsolve2023}
+Michel Berkelaar et~al.
+\newblock {\em lpSolve: Interface to {Lp\_solve} v. 5.5 to Solve Linear/Integer
+  Programs}, 2023.
+\newblock R package version 5.6.20.
+
+\bibitem{shiny2024}
+Winston Chang, Joe Cheng, J.J. Allaire, Carson Sievert, Barret Schloerke, Yihui
+  Xie, Jeff Allen, Jonathan McPherson, Alan Dipert, and Barbara Borges.
+\newblock {\em shiny: Web Application Framework for {R}}, 2024.
+\newblock R package version 1.8.1.
+
+\bibitem{chase2009}
+Richard~B. Chase, Nicholas~J. Aquilano, and F.~Robert Jacobs.
+\newblock {\em Administración de operaciones: producción y cadena de
+  suministros}.
+\newblock McGraw-Hill, México, 12 edition, 2009.
+
+\bibitem{igraph2023}
+Gabor Csardi and Tamas Nepusz.
+\newblock {\em igraph: Network Analysis and Visualization}, 2023.
+\newblock R package version 1.6.0.
+
+\bibitem{hillier2010}
+Frederick~S. Hillier and Gerald~J. Lieberman.
+\newblock {\em Introducción a la investigación de operaciones}.
+\newblock McGraw-Hill, México, 9 edition, 2010.
+
+\bibitem{rcore2024}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria, 2024.
+
+\bibitem{taha2012}
+Hamdy~A. Taha.
+\newblock {\em Investigación de operaciones}.
+\newblock Pearson Educación, México, 9 edition, 2012.
+
+\bibitem{winston2005}
+Wayne~L. Winston.
+\newblock {\em Investigación de operaciones: aplicaciones y algoritmos}.
+\newblock Thomson, México, 4 edition, 2005.
 
 \end{thebibliography}

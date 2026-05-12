@@ -345,7 +345,8 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 7. PRIMERA ITERACIÓN MODI
 	% =========================
-	\section{Método MODI — Primera iteración}
+	\section{Método MODI }
+		\subsection{Primera iteración}
 	
 	Dentro de la primera iteración a partir de la solución inicial obtenida mediante el método de costo mínimo en el paso anterior, se procede a aplicar el método MODI basado en los multiplicadores  para la obtención de los valores correspondientes a la celdas básicas tomando en cuenta la formula tratada en clase que relaciona los valores de las celdas y sus costos.
 	Fijando $u_A = 0$ y aplicando $u_i + v_j = c_{ij}$ para cada celda básica:
@@ -380,7 +381,7 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 8. CICLO Y THETA
 	% =========================
-	\section{Ciclo cerrado y cálculo de \texorpdfstring{$\theta$}{theta}}
+	\subsection{Ciclo cerrado y cálculo de \texorpdfstring{$\theta$}{theta}}
 	
 	Tras identificar que la celda $(A, CD_3)$ posee un costo marginal negativo, se procede a la construcción de un ciclo cerrado para redistribuir las unidades y optimizar el costo total. Este camino se traza partiendo de la celda entrante y desplazándose horizontal y verticalmente solo a través de celdas básicas existentes, alternando signos positivos y negativos para mantener el equilibrio de la oferta y la demanda. En este caso, el ciclo vincula las posiciones $(A, CD_3)$, $(B, CD_3)$, $(B, CD_1)$ y $(A, CD_1)$, permitiendo un ajuste dinámico de las cantidades asignadas sin alterar las restricciones de los orígenes y destinos.
 	
@@ -414,7 +415,7 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 9. NUEVA SOLUCIÓN
 	% =========================
-	\section{Nueva solución básica factible}
+	\subsection{Nueva solución básica factible}
 	
 	Dentro del proceso de la iteración construimos la nueva solución básica factible que se describe en la siguiente tabla, de forma en que la planta B distribuye al centro 1 30 unidades con un costo de 9 asi mismo al centro 3 con un total de 30 unidades a costo de 13 acabando su disponibilidad de 60, la planta A distribuye a dos centros, el primero corresponde al centro 2 con 45 unidades de costo 6 y el segundo corresponde al centro 3 con un valor de 5 unidades con un costo de 10 completando su disponibilidad, finalmente la casilla con menor costo de toda la matriz transporta 40 unidades a un costo de 5 desde la planta c hacia el centro de distribución 4 como se demuestra en lo siguiente:
 	\begin{table}[ht]
@@ -437,7 +438,7 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 10. NUEVO COSTO TOTAL
 	% =========================
-	\section{Nuevo costo total}
+	\subsection{Nuevo costo total}
 	Al finalizar dicha iteración se describe el siguiente costo total con un valor de 1180 correspondiente a la sumatoria de los valores de cada casilla por el costo de transportar el producto a dicha posición. De modo en que se suma el valor de 45 por su costo de 6 y consiguientes. 
 	\[
 	Z = 45(6) + 5(10) + 30(9) + 30(13) + 40(5)
@@ -448,7 +449,7 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 11. SEGUNDA ITERACIÓN MODI
 	% =========================
-	\section{Segunda iteración MODI}
+	\subsection{Segunda iteración MODI}
 	
 	Para la segunda iteración, se actualiza el sistema de ecuaciones de los multiplicadores basándose en la nueva configuración de celdas básicas obtenida tras el ajuste de $\theta$. Manteniendo la convención de fijar $u_A = 0$, se recalculan los valores de las variables duales utilizando la relación $u_i + v_j = c_{ij}$ para las rutas activas. Este procedimiento permite deducir rápidamente que $v_2 = 6$ y $v_3 = 10$ a través de la primera fila; posteriormente, el valor de $v_3$ actúa como puente para determinar que $u_B = 3$, lo cual a su vez define el multiplicador de la primera columna como $v_1 = 6$.
 	
@@ -487,7 +488,7 @@ marginparwidth=1.75cm]{geometry}
 	Para la verificación de optimalidad se analiza la solución resultante de la segunda iteración del método MODI. La comprobación formal se complementa con el análisis de sensibilidad, donde se calculan los costos reducidos $\Delta_{ij}=c_{ij}-u_i-v_j$ para las rutas no básicas. Al no existir costos reducidos negativos, la solución se considera óptima para el problema de minimización.
 	
 	\[
-	\boxed{Z^* = 1{,}180}
+	\boxed{Z = 1{,}180}
 	\]
 	
 	
@@ -508,7 +509,7 @@ marginparwidth=1.75cm]{geometry}
 	La solución óptima obtenida es:
 	
 	\[
-	Z^* = 1{,}180
+	Z = 1{,}180
 	\]
 	
 	con las siguientes rutas activas:
@@ -525,11 +526,11 @@ marginparwidth=1.75cm]{geometry}
 	y su respectivo costo unitario:
 	
 	\[
-	Z^* = 45(6) + 5(10) + 30(9) + 30(13) + 40(5)
+	Z = 45(6) + 5(10) + 30(9) + 30(13) + 40(5)
 	\]
 	
 	\[
-	Z^* = 270 + 50 + 270 + 390 + 200 = \boxed{1{,}180}
+	Z = 270 + 50 + 270 + 390 + 200 = \boxed{1{,}180}
 	\]
 	
 	Para realizar el análisis de sensibilidad se emplean los multiplicadores del método MODI.
@@ -699,6 +700,11 @@ marginparwidth=1.75cm]{geometry}
 	
 	\subsection{Rutas activas representadas}
 	
+	La solución óptima del modelo de transporte contempla cinco rutas activas distribuidas entre tres orígenes y cuatro centros de distribución. Desde el origen A se despachan 45 unidades hacia CD2 a un costo unitario de 6, y 5 unidades hacia CD3 a un costo de 10, generando subtotales de 270 y 50, respectivamente. El origen B abastece 30 unidades a CD1 con costo unitario de 9, y otras 30 unidades a CD3 con costo de 13, acumulando 270 y 390. 
+	
+	Finalmente, el origen C
+	envía 40 unidades a CD4 a un costo unitario de 5, con un subtotal de 200. La suma de todos los subtotales arroja un costo total óptimo de 1{,}180, lo que representa la asignación de menor costo posible para satisfacer la demanda de los centros de distribución respetando las capacidades de los orígenes.
+	
 	\begin{table}[ht]
 		\centering
 		\renewcommand{\arraystretch}{1.5}
@@ -828,208 +834,48 @@ marginparwidth=1.75cm]{geometry}
 	ello, las rutas con mayor cantidad asignada se visualizan con líneas más gruesas,
 	mientras que las rutas con menor cantidad se muestran con líneas más delgadas.
 	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  REVISIÓN GENERAL DEL CÓDIGO Y MEJORA DE INTERFACES — PARTE CORRESPONDIENTE
-	%  A ERICK GUERRON
-	% ══════════════════════════════════════════════════════════════════════════
-	\section{Revisión general del código y mejora de interfaces}
-	
-	Además del análisis matemático, se realizó una revisión general del código de la
-	aplicación con el objetivo de mejorar su estructura, estabilidad y presentación visual. La
-	aplicación fue desarrollada en Shiny y organizada en tres bloques principales:
-	dependencias, interfaz de usuario y lógica del servidor.
-	
-	La revisión permitió identificar problemas relacionados con el desbordamiento de campos
-	de entrada, distribución poco flexible de los paneles, tipografía demasiado compacta y
-	falta de validaciones antes de ejecutar el modelo. Para corregir estos aspectos, se
-	aplicaron mejoras tanto en la estructura del código como en el diseño visual de la
-	interfaz.
-	
-\subsection{Mejoras aplicadas al código}
+	\section{Extracción de Resultados}
 
-Con el objetivo de garantizar un funcionamiento robusto y una experiencia de usuario adecuada, se realizaron mejoras integrales sobre el código fuente y la interfaz de la aplicación. En primer lugar, se verificó la correcta carga de todas las dependencias necesarias, asegurando que los paquetes \texttt{shiny}, \texttt{lpSolve}, \texttt{igraph}, \texttt{DT} y \texttt{shinyjs} estuvieran disponibles antes de la ejecución. 
-
-A nivel estructural, el código fue reorganizado mediante la separación de funciones auxiliares, la definición de la interfaz de usuario y la lógica del servidor, lo cual facilita el mantenimiento y la escalabilidad del proyecto. Se incorporaron mecanismos de validación que impiden el ingreso de valores vacíos, negativos o inconsistentes en el modelo de transporte, reduciendo así la posibilidad de errores en tiempo de ejecución. Adicionalmente, se implementó un sistema de balanceo automático que introduce orígenes o destinos ficticios cuando la oferta y la demanda no coinciden, garantizando que el modelo siempre sea resoluble. La resolución del problema se realiza mediante la función \texttt{lp.transport()}, que proporciona soluciones exactas de manera eficiente. Finalmente, los resultados se presentan de forma organizada en pestañas diferenciadas que incluyen la asignación óptima, el análisis de sensibilidad y los gráficos de flujo, todo ello dentro de una interfaz responsiva con correcciones tipográficas y de diseño visual.
-
-\begin{table}[ht]
-	\centering
-	\renewcommand{\arraystretch}{1.3}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Elemento} & \textbf{Mejora implementada} \\
-		\midrule
-		Dependencias & Validación de paquetes: \texttt{shiny}, \texttt{lpSolve}, \texttt{igraph}, \texttt{DT}, \texttt{shinyjs} \\
-		Estructura   & Separación de funciones auxiliares, UI y lógica del servidor \\
-		Validación   & Controles para valores vacíos, negativos o inconsistentes \\
-		Balanceo     & Balanceo automático con origen/destino ficticio \\
-		Resolución   & Uso de \texttt{lp.transport()} para soluciones exactas \\
-		Resultados   & Pestañas: asignación, sensibilidad y gráficos de flujos \\
-		Interfaz     & Diseño responsivo y mejora tipográfica \\
-		\bottomrule
-	\end{tabular}
-	\caption{Resumen de mejoras aplicadas al código y a la interfaz}
-\end{table}
-	
-	\subsection{Validación previa a la resolución}
-	
-	Una de las mejoras incorporadas fue la validación de datos antes de resolver el modelo.
-	Esto evita que la aplicación intente ejecutar el algoritmo con información incompleta o no
-	válida.
-	
-	\begin{lstlisting}[language=R, caption={Validaciones antes de resolver el modelo}]
-		if (any(is.na(mat_c)) || any(is.na(oferta)) || any(is.na(demanda))) {
-			showNotification(
-			"Existen valores vacios o no validos. Revisa costos, oferta y demanda.",
-			type = "error"
-			)
-			return()
-		}
-		
-		if (any(mat_c < 0) || any(oferta < 0) || any(demanda < 0)) {
-			showNotification(
-			"Los costos, ofertas y demandas no pueden ser negativos.",
-			type = "error"
-			)
-			return()
-		}
-		
-		if (sum(oferta) == 0 || sum(demanda) == 0) {
-			showNotification(
-			"La oferta y la demanda total deben ser mayores que cero.",
-			type = "error"
-			)
-			return()
-		}
-	\end{lstlisting}
-	
-	Estas validaciones fortalecen la robustez de la aplicación, debido a que reducen errores
-	de ejecución y orientan al usuario sobre los datos que debe corregir.
-	
-	\subsection{Corrección visual de los campos de entrada}
-	
-	En la versión inicial de la interfaz, algunos campos de entrada podían salirse de los
-	paneles, especialmente en la matriz de costos. Para solucionar este problema, se
-	corrigieron los anchos de los elementos generados por Shiny y se estableció una
-	estructura flexible para los formularios.
-	
-	\begin{lstlisting}[language=R, caption={Correccion de ancho para inputs en Shiny}]
-		.shiny-input-container {
-			width: 100% !important;
-			max-width: 100% !important;
-			min-width: 0 !important;
-			margin-bottom: 0 !important;
-		}
-		
-		.form-control,
-		input[type=number],
-		input[type=text],
-		select.form-control {
-			width: 100% !important;
-			min-width: 0 !important;
-			height: 42px !important;
-			border-radius: 10px !important;
-		}
-	\end{lstlisting}
-	
-	Esta corrección permitió que los campos numéricos y de texto se mantengan dentro de sus
-	contenedores, evitando que se superpongan o salgan visualmente del panel principal.
-	
-	\subsection{Mejora de la matriz de costos}
-	
-	La matriz de costos fue rediseñada mediante una grilla flexible. Esta mejora permite que
-	el caso base $3 \times 4$ se visualice de forma ordenada y que, en caso de aumentar el
-	número de destinos, se active un desplazamiento horizontal controlado sin romper la
-	interfaz.
-	
-	\begin{lstlisting}[language=R, caption={Estructura flexible para la matriz de costos}]
-		div(
-		class = "matrix-scroll",
-		div(
-		class = "matrix-grid",
-		style = paste0(
-		"grid-template-columns: minmax(56px, 70px) repeat(",
-		n,
-		", minmax(110px, 1fr));"
-		)
-		)
-		)
-	\end{lstlisting}
-	
-	Con esta estructura, la aplicación mantiene una visualización estable incluso cuando el
-	usuario modifica las dimensiones del problema de transporte.
-	
-	\subsection{Mejora de la experiencia de usuario}
-	
-	La interfaz fue mejorada mediante el uso de tarjetas, pestañas, tablas dinámicas y una
-	distribución visual más ordenada. Esto permite que el usuario pueda ingresar datos,
-	resolver el modelo e interpretar los resultados de forma progresiva.
-	
-	Las principales mejoras visuales fueron:
-	
-	\begin{itemize}
-		\item Diseño de panel lateral para configuración del problema.
-		\item Separación de secciones mediante tarjetas visuales.
-		\item Uso de pestañas para organizar resultados.
-		\item Corrección de inputs y formularios para evitar desbordamientos.
-		\item Implementación de una matriz con desplazamiento horizontal controlado.
-		\item Incorporación de indicadores KPI para costo óptimo, rutas activas y unidades
-		transportadas.
-		\item Adaptación responsiva para pantallas medianas o pequeñas.
-	\end{itemize}
-	
-	\subsection{Conclusión de la revisión}
-	
-	La revisión general permitió complementar la resolución del modelo de transporte con una
-	aplicación más clara, estable y fácil de utilizar. El análisis de sensibilidad confirmó la
-	optimalidad de la solución y evidenció la existencia de una ruta con costo reducido igual
-	a cero, lo cual representa una posible solución alternativa. El gráfico de flujos facilitó
-	la comprensión visual de la red de distribución óptima, mostrando con claridad las rutas
-	activas, las cantidades transportadas y los costos asociados.
-	
-	Finalmente, las correcciones aplicadas a los campos de entrada, la matriz de costos, las
-	validaciones y la presentación de resultados contribuyen a que la aplicación sea más
-	robusta y adecuada para el análisis interactivo de problemas de transporte.
-
-	
-	\subsubsection{Extracción de Resultados}
-
-	Bueno, analizando más a fondo los resultados que nos botó el modelo de transporte luego de las iteraciones, podemos extraer lo siguiente:
+	Analizando más a fondo los resultados entregados por el modelo de transporte luego de las iteraciones, podemos reconocer lo siguiente:
 
 	\begin{itemize}
-		\item \textbf{Costo total mínimo por semana:} Básicamente, el costo más bajo y óptimo que el sistema logístico puede alcanzar es de \textbf{1,180 unidades monetarias} semanales. Este valor sale, o sea, de multiplicar las cantidades exactas que se van a enviar por el costo unitario de cada ruta que el algoritmo determinó como la mejor opción.
+		\item \textbf{Costo total mínimo por semana:} El costo óptimo alcanzado por el sistema logístico asciende a {1{,}180 unidades monetarias} semanales. Este valor se obtiene de la sumatoria de los productos entre las cantidades asignadas y el costo unitario de cada ruta activa determinada por el algoritmo de optimización.
 		
-		\item \textbf{Matriz de envíos óptimos:} O sea, la distribución final para no gastar de más quedó armada activando estas 5 rutas principales:
+		\item \textbf{Matriz de envíos óptimos:} La distribución de mínimo costo se estructura mediante la activación de cinco rutas de transporte:
 		\begin{itemize}
-			\item Desde la \textbf{Planta A}, mandamos 45 miles de litros hacia el CD2 (que es su ruta más barata con un costo unitario de 6) y otros 5 miles de litros hacia el CD3 (costo de 10).
-			\item Desde la \textbf{Planta B}, enviamos 30 miles de litros al CD1 (costo de 9) y los otros 30 miles de litros al CD3 (costo de 13).
-			\item Desde la \textbf{Planta C}, mandamos la totalidad de su producción, o sea 40 miles de litros, directito al CD4 aprovechando que el costo es el más bajo de toda la tabla (solo 5 unidades).
+			\item Desde la \textbf{Planta A} se despachan 45 miles de litros hacia el CD2, cuyo costo unitario de 6 la convierte en la ruta más económica disponible para dicho origen, y 5 miles de litros adicionales hacia el CD3 a un costo unitario de 10.
+			\item Desde la \textbf{Planta B} se asignan 30 miles de litros al CD1 con un costo unitario de 9, y los 30 miles de litros restantes al CD3 a un costo unitario de 13.
+			\item Desde la \textbf{Planta C} se destina la totalidad de su capacidad productiva, correspondiente a 40 miles de litros, hacia el CD4, ruta que presenta el costo unitario más reducido de la red, equivalente a 5 unidades monetarias.
 		\end{itemize}
 		
-		\item \textbf{Verificación de la capacidad de las plantas (Oferta):} Aquí comprobamos que estamos respetando las restricciones de oferta planteadas al inicio. Bueno, la Planta A envía en total 50 (45+5), agotando su límite exacto de 50. La Planta B envía 60 (30+30), cumpliendo su tope de 60. Y la Planta C envía sus 40 completos. O sea, ninguna planta produce ni envía más de lo que físicamente puede.
+		\item \textbf{Verificación de restricciones de oferta:} Se comprueba que la solución respeta íntegramente las capacidades de producción establecidas. La Planta A despacha un total de 50 miles de litros $(45 + 5)$, agotando exactamente su límite de oferta. La Planta B envía 60 miles de litros $(30 + 30)$, satisfaciendo su capacidad máxima. La Planta C asigna la totalidad de su producción de 40 miles de litros. En consecuencia, ninguna planta supera ni subutiliza su capacidad disponible.
 		
-		\item \textbf{Verificación de la demanda de los CD (Demanda):} Por otro lado, validamos que las restricciones de demanda se cumplan a rajatabla. Básicamente, todos los centros de distribución reciben justo lo que pidieron. El CD1 recibe sus 30 mil litros completos de la Planta B; el CD2 recibe sus 45 mil litros de la Planta A; el CD3 logra cubrir sus 35 mil litros sumando los envíos (5 de la Planta A y 30 de la Planta B); y el CD4 recibe sus 40 mil litros de la Planta C. O sea, el sistema está perfectamente balanceado, no nos sobra ni nos falta agua en ningún lado.
+		\item \textbf{Verificación de restricciones de demanda:} Asi mismo, se valida el cumplimiento de los requerimientos de cada centro de distribución. El CD1 recibe los 30 miles de litros solicitados, provenientes íntegramente de la Planta B; el CD2 recibe sus 45 miles de litros desde la Planta A; el CD3 cubre su demanda de 35 miles de litros mediante la consolidación de los envíos de la Planta A $(5)$ y la Planta B $(30)$; y el CD4 recibe los 40 miles de litros requeridos desde la Planta C. El sistema se encuentra perfectamente balanceado, garantizando que la oferta total satisface de manera exacta la demanda agregada de la red.
 	\end{itemize}
 % =============================================================
 % INTERPRETACIÓN Y GESTIÓN
 % =============================================================
+\subsection{Interpretación de resultados}
 
-\subsection{Interpretación de resultados de transporte}
+La solución óptima del modelo de transporte determina un costo mínimo de $Z = 1{,}180$ unidades monetarias semanales, resultado que se obtiene activando únicamente 5 de las 12 rutas origen-destino teóricamente posibles en una red conformada por 3 plantas y 4 centros de distribución. Esta selectividad estructural no es arbitraria: el algoritmo del transporte concentra los flujos exclusivamente en aquellos trayectos cuya combinación de costo unitario y cantidad transportada minimiza la función objetivo global, descartando las rutas cuya incorporación, aunque factible, elevaría innecesariamente el costo total del sistema. El hecho de que el $41.67\%$ de las rutas posibles permanezca inactivo refleja una red altamente eficiente desde el punto de vista de la asignación de recursos logísticos.
 
-A partir de la solución óptima obtenida ($Z^* = 1,180$), se presentan las siguientes conclusiones operativas:
+\subsubsection*{Análisis del volumen de despacho por origen}
 
-\begin{enumerate}
-    \item \textbf{¿Qué planta envía más producto? y ¿Por qué?} \\
-    La \textbf{Planta B} es la que realiza el mayor envío, con un total de 60 mil litros[cite: 1318]. Esto se debe a que el modelo está balanceado (Oferta = Demanda = 150), lo que obliga a agotar la capacidad total de las plantas. Al tener la Planta B la mayor capacidad inicial, lidera el volumen de distribución[cite: 1318].
+El modelo distribuye las 150 miles de litros de oferta total de manera diferenciada entre los tres orígenes. La \textbf{Planta B} lidera el volumen de despacho con 60 miles de litros, seguida por la Planta A con 50 y la Planta C con 40. Este comportamiento no obedece a una preferencia arbitraria del modelo, sino a una consecuencia directa de la condición de balance del sistema: dado que la oferta agregada coincide exactamente con la demanda total ($\sum O_i = \sum D_j = 150$), el modelo está obligado a agotar íntegramente la capacidad de cada planta. En un problema balanceado, todas las restricciones de oferta se satisfacen como igualdades estrictas, por lo que la proporción de despacho de cada planta queda determinada por su capacidad declarada y no por ninguna holgura disponible. La Planta B, al poseer la mayor capacidad del sistema, absorbe naturalmente el mayor volumen de flujo, distribuyéndolo entre los centros CD1 y CD3 a través de dos rutas activas.
 
-    \item \textbf{¿Qué ruta es la más utilizada? y ¿Qué ruta no se utiliza?} \\
-    La ruta más utilizada es de la \textbf{Planta A al CD2}, con un envío de 45 mil litros. Por otro lado, no se utilizan aquellas rutas cuyos costos marginales no favorecen la minimización, como por ejemplo la ruta de la Planta A al CD1 o Planta C al CD1.
+\subsubsection*{Análisis de las rutas activas e inactivas}
 
-    \item \textbf{¿Por qué la Planta C solo envía a un CD?} \\
-    La Planta C envía sus 40 mil litros exclusivamente al CD4. Esto ocurre porque el costo unitario de esta ruta es de \$5, el cual representa \textbf{el costo de transporte más bajo de todo el sistema}[cite: 1321].
+La ruta \textbf{Planta A $\to$ CD2} constituye el trayecto de mayor flujo individual del sistema, con 45 miles de litros asignados y un subtotal de 270 unidades monetarias. Su predominancia se explica por la combinación de un costo unitario competitivo de 6 y una demanda elevada del CD2 (45 miles de litros), lo que convierte a esta conexión en la más eficiente para satisfacer dicho centro. De manera complementaria, la Planta A destina sus 5 miles de litros restantes hacia el CD3 a un costo de 10, contribuyendo parcialmente a satisfacer la demanda de ese destino.
 
-    \item \textbf{¿Qué pasaría si la demanda de CD4 aumenta a 50?} \\
-    El sistema se desbalancearía, ya que la demanda total (160) superaría la oferta (150)[cite: 1318, 1319]. Sería necesario crear una \textbf{planta ficticia} con capacidad de 10 para equilibrar el modelo, indicando que habría un déficit de suministro en los centros.
-\end{enumerate}
+Por su parte, las rutas inactivas entre ellas Planta A $\to$ CD1, Planta A $\to$ CD4, Planta C $\to$ CD1, Planta C $\to$ CD2, Planta C $\to$ CD3, Planta B $\to$ CD2 y Planta B $\to$ CD4— presentan costos unitarios que, evaluados mediante el análisis de los multiplicadores duales, generan costos reducidos estrictamente positivos. Esto significa que activar cualquiera de estas rutas incrementaría el costo total del sistema, razón por la cual el algoritmo las excluye de la solución. La condición de optimalidad del método MODI establece que, para toda ruta inactiva $(i,j)$, debe cumplirse que $c_{ij} - u_i - v_j \geq 0$; en este caso, dicha condición se verifica para todas las celdas vacías, confirmando formalmente que no existe ninguna reasignación de flujo que permita reducir el costo por debajo de $Z^* = 1{,}180$.
+
+\subsubsection*{Análisis de los multiplicadores duales}
+
+Los multiplicadores duales obtenidos —$u_A = 0$, $u_B = 3$, $u_C = 0$ para los orígenes, y $v_{CD1} = 6$, $v_{CD2} = 6$, $v_{CD3} = 10$, $v_{CD4} = 0$ para los destinos— aportan información de valor sobre la estructura de costos del sistema. El valor $u_B = 3$ indica que la Planta B presenta una penalización implícita de 3 unidades por cada mile de litro despachado, reflejando que sus rutas activas (hacia CD1 con costo 9 y hacia CD3 con costo 13) son relativamente más costosas que las de los demás orígenes. Por otro lado, el multiplicador $v_{CD3} = 10$ es el más elevado entre los destinos, lo que señala que el CD3 es el centro de distribución de acceso más costoso dentro de la solución óptima, siendo abastecido por dos plantas a costos unitarios de 10 y 13, respectivamente. Finalmente, $v_{CD4} = 0$ refleja que el CD4 es atendido por la ruta de menor costo de toda la red (Planta C, costo unitario de 5), lo que no genera ninguna penalización dual asociada a ese destino.
+
+\subsubsection*{Especialización de la Planta C}
+
+La Planta C concentra la totalidad de su producción —40 miles de litros— en una única ruta hacia el CD4, a un costo unitario de 5 unidades monetarias, el valor más reducido de toda la matriz de costos. Esta especialización absoluta responde a un principio de eficiencia extrema: ante la disponibilidad de una ruta con el costo más bajo del sistema, el modelo asigna la cap
 
 \section{Parte 2: Gestión del proyecto (PERT/CPM)}
 
