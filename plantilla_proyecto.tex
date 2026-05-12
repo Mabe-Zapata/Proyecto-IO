@@ -15,15 +15,10 @@ marginparwidth=1.75cm]{geometry}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{parskip}
-\usepackage{xcolor}
-\usepackage{tabularray}
-\usepackage{xcolor}
-
-\usepackage{colortbl}
+\usepackage[table]{xcolor}
 
 \usepackage{makecell}
 \usepackage{multirow}
-\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xfrac}     % para fracciones opcionales
 
@@ -71,10 +66,10 @@ marginparwidth=1.75cm]{geometry}
 
 \renewcommand{\arraystretch}{2.4}
 
-% Definición de estilo para las celdas de transporte
-\NewChildSelector{transport}{
-	\every{c,r} = {m, c, wd=1.2cm, ht=1cm}
-}
+% Definición de estilo para las celdas de transporte (Omitido por incompatibilidad de tabularray)
+% \NewChildSelector{transport}{
+% 	\every{c,r} = {m, c, wd=1.2cm, ht=1cm}
+% }
 
 % ── Listings (código R con colores) ────────────────────────────────────────
 \usepackage{listings}
@@ -154,11 +149,9 @@ marginparwidth=1.75cm]{geometry}
 	
 	\begin{center}
 		
-		\vspace{4cm}
+		\vspace{3cm}
 		\rule{\linewidth}{1pt}
 		\vspace{0.4cm}
-		
-		
 		
 		{\Large\textbf{Optimización de Distribución y Planificación
 				Temporal en Planta Embotelladora de Agua
@@ -176,7 +169,7 @@ marginparwidth=1.75cm]{geometry}
 		\begin{tabular}{rl}
 			\textbf{Estudiantes:} & Erick Guerron  \\
 			& Mauricio Guevara  \\
-			& Erick Lopez  \\
+			& Erick Lopez \\
 			& Maria Zapata \\[0.4cm]
 			\textbf{Docente:}     & Mat. Inti Becerra, Mg. \\[0.2cm]
 			\textbf{Fecha:}       & Agregar Fecha \\[0.2cm]
@@ -385,7 +378,7 @@ marginparwidth=1.75cm]{geometry}
 	% =========================
 	% 8. CICLO Y THETA
 	% =========================
-	\section{Ciclo cerrado y cálculo de $\theta$}
+	\section{Ciclo cerrado y cálculo de \texorpdfstring{$\theta$}{theta}}
 	
 	Tras identificar que la celda $(A, CD_3)$ posee un costo marginal negativo, se procede a la construcción de un ciclo cerrado para redistribuir las unidades y optimizar el costo total. Este camino se traza partiendo de la celda entrante y desplazándose horizontal y verticalmente solo a través de celdas básicas existentes, alternando signos positivos y negativos para mantener el equilibrio de la oferta y la demanda. En este caso, el ciclo vincula las posiciones $(A, CD_3)$, $(B, CD_3)$, $(B, CD_1)$ y $(A, CD_1)$, permitiendo un ajuste dinámico de las cantidades asignadas sin alterar las restricciones de los orígenes y destinos.
 	
@@ -1067,15 +1060,77 @@ marginparwidth=1.75cm]{geometry}
 	\end{lstlisting}
 	
 	\subsubsection{Extracción de Resultados}
-	
-	Extraiga y reporte:
-	
+
+	Bueno, analizando más a fondo los resultados que nos botó el modelo de transporte luego de las iteraciones, podemos extraer lo siguiente:
+
 	\begin{itemize}
-		\item Resultado 1.
-		\item Resultado 2.
-		\item Resultado 3.
+		\item \textbf{Costo total mínimo por semana:} Básicamente, el costo más bajo y óptimo que el sistema logístico puede alcanzar es de \textbf{1,180 unidades monetarias} semanales. Este valor sale, o sea, de multiplicar las cantidades exactas que se van a enviar por el costo unitario de cada ruta que el algoritmo determinó como la mejor opción.
+		
+		\item \textbf{Matriz de envíos óptimos:} O sea, la distribución final para no gastar de más quedó armada activando estas 5 rutas principales:
+		\begin{itemize}
+			\item Desde la \textbf{Planta A}, mandamos 45 miles de litros hacia el CD2 (que es su ruta más barata con un costo unitario de 6) y otros 5 miles de litros hacia el CD3 (costo de 10).
+			\item Desde la \textbf{Planta B}, enviamos 30 miles de litros al CD1 (costo de 9) y los otros 30 miles de litros al CD3 (costo de 13).
+			\item Desde la \textbf{Planta C}, mandamos la totalidad de su producción, o sea 40 miles de litros, directito al CD4 aprovechando que el costo es el más bajo de toda la tabla (solo 5 unidades).
+		\end{itemize}
+		
+		\item \textbf{Verificación de la capacidad de las plantas (Oferta):} Aquí comprobamos que estamos respetando las restricciones de oferta planteadas al inicio. Bueno, la Planta A envía en total 50 (45+5), agotando su límite exacto de 50. La Planta B envía 60 (30+30), cumpliendo su tope de 60. Y la Planta C envía sus 40 completos. O sea, ninguna planta produce ni envía más de lo que físicamente puede.
+		
+		\item \textbf{Verificación de la demanda de los CD (Demanda):} Por otro lado, validamos que las restricciones de demanda se cumplan a rajatabla. Básicamente, todos los centros de distribución reciben justo lo que pidieron. El CD1 recibe sus 30 mil litros completos de la Planta B; el CD2 recibe sus 45 mil litros de la Planta A; el CD3 logra cubrir sus 35 mil litros sumando los envíos (5 de la Planta A y 30 de la Planta B); y el CD4 recibe sus 40 mil litros de la Planta C. O sea, el sistema está perfectamente balanceado, no nos sobra ni nos falta agua en ningún lado.
 	\end{itemize}
-	
+% =============================================================
+% INTERPRETACIÓN Y GESTIÓN
+% =============================================================
+
+\subsection{Interpretación de resultados de transporte}
+
+A partir de la solución óptima obtenida ($Z^* = 1,180$), se presentan las siguientes conclusiones operativas:
+
+\begin{enumerate}
+    \item \textbf{¿Qué planta envía más producto? y ¿Por qué?} \\
+    La \textbf{Planta B} es la que realiza el mayor envío, con un total de 60 mil litros[cite: 1318]. Esto se debe a que el modelo está balanceado (Oferta = Demanda = 150), lo que obliga a agotar la capacidad total de las plantas. Al tener la Planta B la mayor capacidad inicial, lidera el volumen de distribución[cite: 1318].
+
+    \item \textbf{¿Qué ruta es la más utilizada? y ¿Qué ruta no se utiliza?} \\
+    La ruta más utilizada es de la \textbf{Planta A al CD2}, con un envío de 45 mil litros. Por otro lado, no se utilizan aquellas rutas cuyos costos marginales no favorecen la minimización, como por ejemplo la ruta de la Planta A al CD1 o Planta C al CD1.
+
+    \item \textbf{¿Por qué la Planta C solo envía a un CD?} \\
+    La Planta C envía sus 40 mil litros exclusivamente al CD4. Esto ocurre porque el costo unitario de esta ruta es de \$5, el cual representa \textbf{el costo de transporte más bajo de todo el sistema}[cite: 1321].
+
+    \item \textbf{¿Qué pasaría si la demanda de CD4 aumenta a 50?} \\
+    El sistema se desbalancearía, ya que la demanda total (160) superaría la oferta (150)[cite: 1318, 1319]. Sería necesario crear una \textbf{planta ficticia} con capacidad de 10 para equilibrar el modelo, indicando que habría un déficit de suministro en los centros.
+\end{enumerate}
+
+\section{Parte 2: Gestión del proyecto (PERT/CPM)}
+
+\subsection{Tabla de actividades}
+
+De acuerdo con los datos técnicos proporcionados para la instalación de la red de distribución[cite: 1426]:
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|l|c|c|}
+        \hline
+        \textbf{Actividad} & \textbf{Descripción} & \textbf{Duración (días)} & \textbf{Predecesor} \\ \hline
+        A & Diseño de ruta & 5 & --- \\ \hline
+        B & Compra de válvulas & 3 & A \\ \hline
+        C & Instalación en CD1 & 4 & B \\ \hline
+        D & Instalación en CD2 & 6 & B \\ \hline
+        E & Pruebas de flujo & 2 & C, D \\ \hline
+        F & Capacitación & 3 & E \\ \hline
+        G & Inicio de operación & 1 & F \\ \hline
+    \end{tabular}
+    \caption{Listado de actividades y tiempos del proyecto}
+\end{table}
+
+\subsection{Diagrama de red}
+
+El diagrama de red representa la secuencia lógica y las dependencias entre las actividades del proyecto. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/red_proyecto.png} 
+    \caption{Diagrama de red del proyecto de instalación}
+\end{figure}
+
 	% ══════════════════════════════════════════════════════════════════════════
 	%  SECCIÓN 3
 	% ══════════════════════════════════════════════════════════════════════════
@@ -1539,6 +1594,8 @@ marginparwidth=1.75cm]{geometry}
 		cat(sprintf("   Ahorro total      :  %6d\n",   Z0 - Z_opt))
 		cat("  ", strrep("=", 44), "\n\n")
 	\end{lstlisting}
-	
+\nocite{*}
+	\bibliographystyle{plain}
+	\bibliography{sample}	
 	
 \end{document}
